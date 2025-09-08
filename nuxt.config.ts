@@ -9,6 +9,8 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     '@vueuse/nuxt',
     '@nuxthub/core',
+    '@nuxt/scripts',
+    '@nuxtjs/turnstile'
   ],
   hub: {
     blob: true,
@@ -81,10 +83,16 @@ export default defineNuxtConfig({
       ]
     }
   },
+  turnstile: {
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY,
+  },
   runtimeConfig: {
     public: {
       constructionPassword: process.env.SITE_PASSWORD || 'secret'
-    }
+    },
+    turnstile: {
+      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY,
+    },
   },
   components: [
     {

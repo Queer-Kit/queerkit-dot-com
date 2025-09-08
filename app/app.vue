@@ -89,6 +89,8 @@ onMounted(() => {
     close: false
   })
 });
+
+const turnstile = ref()
 </script>
 
 <template>
