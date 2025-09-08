@@ -62,6 +62,10 @@ const team = ref([
 <template>
   <UPage>
     <UContainer>
+
+      <UPageSection title="History" description="How we got to today.">
+
+      </UPageSection>
       <UPageSection title="Team" description="Queer Kit is developed and maintained by these wonderful people.">
         <UPageColumns>
           <UPageCard

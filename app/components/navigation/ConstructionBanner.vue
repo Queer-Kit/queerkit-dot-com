@@ -4,7 +4,7 @@ const actions = ref([
     color: 'neutral',
     label: 'View on GitHub',
     trailingIcon: 'mdi:github',
-    to: 'https://github.com/idantitydotme/idantity-dot-me',
+    to: 'https://github.com/Queer-Kit/queerkit-dot-com',
   }
 ])
 </script>
