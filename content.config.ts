@@ -61,7 +61,7 @@ export default defineContentConfig({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
         image: createImageSchema(),
-        type: z.enum(['Term']),
+        type: z.enum(['Gender Identity', 'Sexual Orientation', 'Romantic Orientation']),
         tags: z.array(z.string()),
         lastModified: z.date(),
         links: z.array(createLinkSchema())
