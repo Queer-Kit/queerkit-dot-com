@@ -8,6 +8,7 @@ const { data: posts } = await useAsyncData(route.path, () => queryCollection('bl
   <UContainer>
     <UPageHeader
       title="Blog"
+      description="View articles by our community members."
       class="py-[50px]"
     />
     <UPageBody>
@@ -23,7 +24,7 @@ const { data: posts } = await useAsyncData(route.path, () => queryCollection('bl
           :authors="post.authors"
           :orientation="index === 0 ? 'horizontal' : 'vertical'"
           :class="[index === 0 && 'col-span-full']"
-          variant="ghost"
+          variant="subtle"
         />
       </UBlogPosts>
     </UPageBody>

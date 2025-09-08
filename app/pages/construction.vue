@@ -6,6 +6,10 @@ definePageMeta({
   layout: 'construction'
 });
 
+useHead({
+  title: 'Under Construction',
+});
+
 const password = ref('');
 const error = ref<string | null>(null);
 const config = useRuntimeConfig();
