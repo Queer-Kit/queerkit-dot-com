@@ -5,7 +5,7 @@ useHead({
 
 const team = ref([
   {
-    src: 'https://avatars.githubusercontent.com/u/499550?v=4',
+    src: 'https://cdn.queerkit.com/images/team/bruna-corso.webp',
     icon: 'lucide:flag',
     name: 'Bruna Corso',
     badges: [
@@ -21,7 +21,7 @@ const team = ref([
     ]
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/499550?v=4',
+    src: 'https://cdn.queerkit.com/images/team/daniel-marchi.webp',
     icon: 'lucide:flag',
     name: 'Daniel Marchi',
     badges: [
@@ -41,7 +41,7 @@ const team = ref([
     ]
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/499550?v=4',
+    src: 'https://cdn.queerkit.com/images/team/gustavo-cardoso.webp',
     icon: 'lucide:flag',
     name: 'Gustavo Cardoso',
     badges: [
@@ -69,7 +69,7 @@ const team = ref([
             :key="index"
             variant="subtle"
             :icon="member.icon"
-            :title="member.name",
+            :title="member.name"
             :description="member.description"
             reverse
           >
@@ -78,14 +78,14 @@ const team = ref([
               direction="horizontal"
               gap="sm"
             >
-              <UBadge v-if="member.badges" v-for="(badge, index) in member.badges" :label="badge" color="primary" variant="subtle" class="w-fit"/>
+              <UBadge v-if="member.badges" v-for="badge in member.badges" :label="badge" color="primary" variant="subtle" class="w-fit"/>
             </RLLayoutBox>
             <template #footer>
               <RLLayoutBox
                 direction="horizontal"
                 gap="sm"
               >
-                <UButton v-if="member.links" v-for="(link, index) in member.links" variant="outline" :to="link.to" :icon="link.icon" />
+                <UButton v-if="member.links" v-for="link in member.links" variant="outline" :to="link.to" :icon="link.icon" />
               </RLLayoutBox>
             </template>
           </UPageCard>
