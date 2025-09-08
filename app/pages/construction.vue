@@ -36,6 +36,7 @@ const handleLogin = async () => {
 
 <template>
   <div class="flex min-h-screen items-center justify-center bg-background">
+<UContainer>
     <UCard class="w-full max-w-sm">
       <template #header>
         <div class="flex flex-col items-center gap-2">
@@ -64,5 +65,6 @@ const handleLogin = async () => {
         />
       </div>
     </UCard>
+</UContainer>
   </div>
 </template>
