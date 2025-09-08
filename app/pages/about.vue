@@ -1,0 +1,100 @@
+<script setup lang="ts">
+useHead({
+  title: 'About',
+});
+
+const team = ref([
+  {
+    src: 'https://avatars.githubusercontent.com/u/499550?v=4',
+    icon: 'lucide:flag',
+    name: 'Bruna Corso',
+    badges: [
+      'Co-founder',
+      'Designer'
+    ],
+    description: 'Lorem ipsum dolor sit amet.',
+    links: [
+      {
+        to: 'https://instagram.com/brunaluizacorso/',
+        icon: 'mdi:instagram',
+      }
+    ]
+  },
+  {
+    src: 'https://avatars.githubusercontent.com/u/499550?v=4',
+    icon: 'lucide:flag',
+    name: 'Daniel Marchi',
+    badges: [
+      'Co-founder',
+      'Developer'
+    ],
+    description: 'Lorem ipsum dolor sit amet.',
+    links: [
+      {
+        to: 'https://instagram.com/idantity.me/',
+        icon: 'mdi:instagram',
+      },
+      {
+        to: 'https://github.com/idantitydotme/',
+        icon: 'mdi:github',
+      }
+    ]
+  },
+  {
+    src: 'https://avatars.githubusercontent.com/u/499550?v=4',
+    icon: 'lucide:flag',
+    name: 'Gustavo Cardoso',
+    badges: [
+      'Co-founder',
+      'Designer'
+    ],
+    description: 'Lorem ipsum dolor sit amet.',
+    links: [
+      {
+        to: 'https://instagram.com/gusfcardoso/',
+        icon: 'mdi:instagram',
+      }
+    ]
+  }
+])
+</script>
+
+<template>
+  <UPage>
+    <UContainer>
+      <UPageSection title="Team" description="Queer Kit is developed and maintained by these wonderful people.">
+        <UPageColumns>
+          <UPageCard
+            v-for="(member, index) in team"
+            :key="index"
+            variant="subtle"
+            :icon="member.icon"
+            :title="member.name",
+            :description="member.description"
+            reverse
+          >
+            <NuxtImg v-if="member.src" :src="member.src" :alt="member.name" class="w-full" />
+            <RLLayoutBox
+              direction="horizontal"
+              gap="sm"
+            >
+              <UBadge v-if="member.badges" v-for="(badge, index) in member.badges" :label="badge" color="primary" variant="subtle" class="w-fit"/>
+            </RLLayoutBox>
+            <template #footer>
+              <RLLayoutBox
+                direction="horizontal"
+                gap="sm"
+              >
+                <UButton v-if="member.links" v-for="(link, index) in member.links" variant="outline" :to="link.to" :icon="link.icon" />
+              </RLLayoutBox>
+            </template>
+          </UPageCard>
+        </UPageColumns>
+      </UPageSection>
+    </UContainer>
+  </UPage>
+</template>
+
+<style scoped>
+
+</style>
