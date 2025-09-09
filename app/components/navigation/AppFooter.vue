@@ -55,11 +55,14 @@ const columns: FooterColumn[] = [
       </RLLayoutBox>
     </template>
     <template #right>
-      <UFieldGroup>
+      <RLLayoutBox
+        direction="horizontal"
+        gap="sm"
+      >
         <UButton size="xl" variant="ghost" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" :ui="{ leadingIcon: 'text-white' }"/>
         <UButton size="xl" variant="ghost" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979" :ui="{ leadingIcon: 'text-white' }"/>
         <UButton size="xl" variant="ghost" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" :ui="{ leadingIcon: 'text-white' }"/>
-      </UFieldGroup>
+      </RLLayoutBox>
     </template>
   </UFooter>
 </template>
