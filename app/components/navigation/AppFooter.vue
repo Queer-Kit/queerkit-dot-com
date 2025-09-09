@@ -50,7 +50,7 @@ const columns: FooterColumn[] = [
     <template #left>
       <RLLayoutBox direction="vertical" gap="sm">
         <NuxtLink to="/">
-          <NuxtImg src="https://cdn.idantity.me/images/logos/logotype-white.webp" alt="idantity.me Logotype" class="h-12"/>
+          <UIcon name="first-party:logotype-white" class="h-12 w-auto" />
         </NuxtLink>
         <p class="text-muted text-sm">
           © {{ new Date().getFullYear() }} Queer Kit

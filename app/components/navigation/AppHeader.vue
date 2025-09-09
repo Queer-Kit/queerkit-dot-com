@@ -40,7 +40,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 <template>
   <UHeader mode="slideover" toggle-side="left" to="/">
     <template #title>
-      <NuxtImg src="https://cdn.idantity.me/images/logos/logomark-white.webp" alt="idantity.me Logomark" class="h-12 w-auto" />
+      <UIcon name="first-party:logomark-white" class="h-12 w-auto" />
     </template>
     <UNavigationMenu :items="items" variant="link"/>
     <template #right>
