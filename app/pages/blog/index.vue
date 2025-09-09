@@ -9,10 +9,9 @@ const { data: posts } = await useAsyncData(route.path, () => queryCollection('bl
     <UPage>
       <UPageHeader
         title="Blog"
-        description="View articles by our community members."
+        description="Read the latest articles by our community members."
       />
       <UPageBody>
-        <NewsletterSignup />
         <UBlogPosts>
           <UBlogPost
             v-for="(post, index) in posts"
