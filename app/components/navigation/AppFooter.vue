@@ -7,7 +7,7 @@ const columns: FooterColumn[] = [
     children: [
       {
         label: 'Branding',
-        to: '/branding',
+        to: '/branding/',
       }
     ]
   },
@@ -56,12 +56,19 @@ const columns: FooterColumn[] = [
     </template>
     <template #right>
       <RLLayoutBox
-        direction="horizontal"
-        gap="sm"
+        direction="vertical"
+        gap="md"
+        align-items="end"
       >
-        <UButton size="xl" variant="ghost" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" :ui="{ leadingIcon: 'text-white' }"/>
-        <UButton size="xl" variant="ghost" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979" :ui="{ leadingIcon: 'text-white' }"/>
-        <UButton size="xl" variant="ghost" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" :ui="{ leadingIcon: 'text-white' }"/>
+        <RLLayoutBox
+          direction="horizontal"
+          gap="sm"
+        >
+          <UButton size="xl" variant="ghost" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" />
+          <UButton size="xl" variant="ghost" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979"/>
+          <UButton size="xl" variant="ghost" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" />
+        </RLLayoutBox>
+        <UColorModeSelect class="w-48"/>
       </RLLayoutBox>
     </template>
   </UFooter>
