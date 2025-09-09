@@ -35,34 +35,36 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <div class="flex min-h-screen items-center justify-center bg-background">
-    <UCard class="w-full max-w-sm">
-      <template #header>
-        <div class="flex flex-col items-center gap-2">
-          <UIcon name="material-symbols:construction" class="text-6xl text-primary" />
-          <h1 class="text-2xl font-bold">Under Construction</h1>
-        </div>
-      </template>
-      <div class="flex flex-col items-center gap-4">
-        <p class="text-center text-muted">
-          This website is currently under construction. Please enter the password to view.
-        </p>
-        <UFormField label="Password" :error="error ? 'Incorrect password' : false" class="w-full">
-          <UInput
-            v-model="password"
-            type="password"
-            placeholder="Enter password"
-            class="w-full"
-            @keyup.enter="handleLogin"
+  <UContainer>
+    <div class="flex min-h-screen items-center justify-center bg-background">
+      <UCard class="w-full max-w-sm">
+        <template #header>
+          <div class="flex flex-col items-center gap-2">
+            <UIcon name="material-symbols:construction" class="text-6xl text-primary" />
+            <h1 class="text-2xl font-bold">Under Construction</h1>
+          </div>
+        </template>
+        <div class="flex flex-col items-center gap-4">
+          <p class="text-center text-muted">
+            This website is currently under construction. Please enter the password to view.
+          </p>
+          <UFormField label="Password" :error="error ? 'Incorrect password' : false" class="w-full">
+            <UInput
+              v-model="password"
+              type="password"
+              placeholder="Enter password"
+              class="w-full"
+              @keyup.enter="handleLogin"
+            />
+          </UFormField>
+          <UButton
+            block
+            color="primary"
+            label="Unlock Site"
+            @click="handleLogin"
           />
-        </UFormField>
-        <UButton
-          block
-          color="primary"
-          label="Unlock Site"
-          @click="handleLogin"
-        />
-      </div>
-    </UCard>
-  </div>
+        </div>
+      </UCard>
+    </div>
+  </UContainer>
 </template>
