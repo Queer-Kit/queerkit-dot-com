@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { ar, en, es, fr, ja, ko, pt, ro, zh_cn } from '@nuxt/ui/locale'
 import type { FooterColumn } from "@nuxt/ui";
+
+const { locale, setLocale } = useI18n()
 
 const columns: FooterColumn[] = [
   {
@@ -68,7 +71,13 @@ const columns: FooterColumn[] = [
           <UButton size="xl" variant="ghost" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979"/>
           <UButton size="xl" variant="ghost" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" />
         </RLLayoutBox>
-        <UColorModeSelect class="w-48"/>
+        <RLLayoutBox
+          direction="horizontal"
+          gap="md"
+        >
+          <UColorModeSelect class="w-48"/>
+          <ULocaleSelect v-model="locale" :locales="[ar, en, es, fr, ja, ko, pt, ro, zh_cn]" @update:model-value="setLocale($event)" color="secondary" class="w-48" />
+        </RLLayoutBox>
       </RLLayoutBox>
     </template>
   </UFooter>

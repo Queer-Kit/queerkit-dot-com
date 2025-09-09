@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import { ar, en, es, fr, ja, ko, pt, ro, zh_cn } from '@nuxt/ui/locale'
 import type { NavigationMenuItem } from '@nuxt/ui'
-
-const { locale, setLocale } = useI18n()
 
 const route = useRoute()
 
@@ -47,8 +44,7 @@ const items = computed<NavigationMenuItem[]>(() => [
     </template>
     <UNavigationMenu :items="items" variant="link"/>
     <template #right>
-      <ULocaleSelect hidden v-model="locale" :locales="[ar, en, es, fr, ja, ko, pt, ro, zh_cn]" @update:model-value="setLocale($event)" color="secondary" class="w-48" />
-      <UColorModeButton/>
+
     </template>
     <template #body>
       <UNavigationMenu :items="items" variant="link" orientation="vertical" class="-mx-2.5" />
