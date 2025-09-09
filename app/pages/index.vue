@@ -62,7 +62,7 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
 
 <template>
   <UPage>
-    <UPageHero title="Queer Kit" description="Your guide to all things queer." headline="Your guide to all things queer." orientation="vertical" :links="heroLinks"/>
+    <UPageHero title="Queer Kit" description="Your guide to all things queer." orientation="vertical" :links="heroLinks"/>
     <UPageSection variant="outline" title="Knowledge Base" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." headline="Learn" icon="lucide:book-open" :features="projectsFeatures" :links="projectsLinks" orientation="horizontal">
       <RLPlaceholder class="h-full"/>
     </UPageSection>
