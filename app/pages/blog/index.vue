@@ -6,27 +6,29 @@ const { data: posts } = await useAsyncData(route.path, () => queryCollection('bl
 
 <template>
   <UContainer>
-    <UPageHeader
-      title="Blog"
-      description="View articles by our community members."
-      class="py-[50px]"
-    />
-    <UPageBody>
-      <UBlogPosts>
-        <UBlogPost
-          v-for="(post, index) in posts"
-          :key="index"
-          :to="post.path"
-          :title="post.title"
-          :description="post.description"
-          :image="post.image.src"
-          :date="post.datePosted"
-          :authors="post.authors"
-          :orientation="index === 0 ? 'horizontal' : 'vertical'"
-          :class="[index === 0 && 'col-span-full']"
-          variant="subtle"
-        />
-      </UBlogPosts>
-    </UPageBody>
+    <UPage>
+      <UPageHeader
+        title="Blog"
+        description="View articles by our community members."
+      />
+      <UPageBody>
+        <NewsletterSignup />
+        <UBlogPosts>
+          <UBlogPost
+            v-for="(post, index) in posts"
+            :key="index"
+            :to="post.path"
+            :title="post.title"
+            :description="post.description"
+            :image="post.image.src"
+            :date="post.datePosted"
+            :authors="post.authors"
+            :orientation="index === 0 ? 'horizontal' : 'vertical'"
+            :class="[index === 0 && 'col-span-full']"
+            variant="subtle"
+          />
+        </UBlogPosts>
+      </UPageBody>
+    </UPage>
   </UContainer>
 </template>

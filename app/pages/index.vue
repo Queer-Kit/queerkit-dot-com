@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { AccordionItem } from '@nuxt/ui'
+
 useHead({
   title: 'Home',
 });
@@ -44,29 +46,18 @@ const projectsLinks = ref([
   }
 ])
 
-const musicLinks = ref([
+const { data: posts } = await useAsyncData('posts', () => queryCollection('blog').all())
+
+const frequentlyAskedQuestions = ref<AccordionItem[]>([
   {
-    label: 'Check out my music',
-    color: 'primary',
-    to: '/music'
+    label: 'I identify as something not currently represented in this website, why is that?',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
   {
-    label: 'View me on Spotify',
-    color: 'secondary',
-    variant: 'subtle',
-    trailingIcon: 'mdi:spotify',
-    to: 'https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222'
-  },
-  {
-    label: 'Hire me as a DJ',
-    color: 'neutral',
-    variant: 'outline',
-    trailingIcon: 'lucide:send',
-    to: '/contact'
+    label: 'Lorem ipsum dolor sit amet?',
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }
 ])
-
-const { data: posts } = await useAsyncData('posts', () => queryCollection('blog').all())
 </script>
 
 <template>
@@ -99,6 +90,9 @@ const { data: posts } = await useAsyncData('posts', () => queryCollection('blog'
           variant="subtle"
         />
       </UBlogPosts>
+    </UPageSection>
+    <UPageSection title="Frequently Asked Questions" description="Lorem ipsum dolor sit amet." headline="Lorem">
+      <UAccordion :items="frequentlyAskedQuestions" />
     </UPageSection>
   </UPage>
 </template>

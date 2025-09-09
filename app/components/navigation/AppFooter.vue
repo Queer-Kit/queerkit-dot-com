@@ -33,6 +33,17 @@ const columns: FooterColumn[] = [
 
 <template>
   <UFooter>
+    <template #top>
+      <UContainer>
+        <RLLayoutBox
+          direction="horizontal"
+          gap="lg"
+        >
+          <NewsletterSignup />
+          <UFooterColumns :columns="columns" />
+        </RLLayoutBox>
+      </UContainer>
+    </template>
     <template #left>
       <RLLayoutBox direction="vertical" gap="sm">
         <NuxtLink to="/">
@@ -42,12 +53,6 @@ const columns: FooterColumn[] = [
           © {{ new Date().getFullYear() }} Queer Kit
         </p>
       </RLLayoutBox>
-    </template>
-    <template #top>
-      <UContainer>
-        <UFooterColumns :columns="columns">
-        </UFooterColumns>
-      </UContainer>
     </template>
     <template #right>
       <UFieldGroup>
