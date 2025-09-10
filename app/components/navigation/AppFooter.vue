@@ -50,7 +50,7 @@ const columns: FooterColumn[] = [
     <template #left>
       <RLLayoutBox direction="vertical" gap="sm">
         <NuxtLink to="/">
-          <UIcon name="first-party:logotype-white" class="h-12 w-auto" />
+          <UIcon name="first-party:logotype-white" class="h-12" />
         </NuxtLink>
         <p class="text-muted text-sm">
           © {{ new Date().getFullYear() }} Queer Kit
