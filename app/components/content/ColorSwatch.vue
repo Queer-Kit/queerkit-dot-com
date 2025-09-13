@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 const props = defineProps<{
   hex: string
   rgb: string
@@ -10,11 +8,6 @@ const props = defineProps<{
 }>();
 
 const toast = useToast()
-
-const copyStatus = ref({
-  message: '',
-  color: ''
-});
 
 const copyToClipboard = async (text: string) => {
   try {
@@ -52,6 +45,7 @@ const copyToClipboard = async (text: string) => {
     <RLLayoutBox
       direction="vertical"
       gap="sm"
+      justifyContent="center"
     >
       <UButton variant="outline" size="sm" icon="lucide:copy" label="Copy HEX" class="w-32" @click="copyToClipboard(props.hex)"/>
       <UButton variant="outline" size="sm" icon="lucide:copy" label="Copy RGB" class="w-32" @click="copyToClipboard(props.rgb)"/>

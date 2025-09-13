@@ -67,9 +67,9 @@ const columns: FooterColumn[] = [
           direction="horizontal"
           gap="sm"
         >
-          <UButton size="xl" variant="ghost" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" />
-          <UButton size="xl" variant="ghost" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979"/>
-          <UButton size="xl" variant="ghost" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" />
+          <UButton size="xl" variant="ghost" color="neutral" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" />
+          <UButton size="xl" variant="ghost" color="neutral" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979"/>
+          <UButton size="xl" variant="ghost" color="neutral" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" />
         </RLLayoutBox>
         <RLLayoutBox
           direction="horizontal"
