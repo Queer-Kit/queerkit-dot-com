@@ -6,7 +6,7 @@ useHead({
 const team = ref([
   {
     src: 'https://cdn.queerkit.com/images/team/bruna-corso.webp',
-    icon: 'lucide:flag',
+    icon: 'flags:flag_bisexual',
     name: 'Bruna Corso',
     badges: [
       'Co-founder',
@@ -22,7 +22,7 @@ const team = ref([
   },
   {
     src: 'https://cdn.queerkit.com/images/team/daniel-marchi.webp',
-    icon: 'lucide:flag',
+    icon: 'flags:flag_gay',
     name: 'Daniel Marchi',
     badges: [
       'Co-founder',
@@ -42,7 +42,7 @@ const team = ref([
   },
   {
     src: 'https://cdn.queerkit.com/images/team/gustavo-cardoso.webp',
-    icon: 'lucide:flag',
+    icon: 'flags:flag_gay',
     name: 'Gustavo Cardoso',
     badges: [
       'Co-founder',

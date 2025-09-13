@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     provider: 'server',
     class: 'icon',
     size: '24px',
-    mode: 'svg',
+    mode: 'css',
     customCollections: [
       {
         prefix: 'first-party',
@@ -47,6 +47,11 @@ export default defineNuxtConfig({
       {
         prefix: 'third-party',
         dir: './app/assets/icons/third-party',
+        normalizeIconName: false,
+      },
+      {
+        prefix: 'flags',
+        dir: './app/assets/icons/flags',
         normalizeIconName: false,
       }
     ],

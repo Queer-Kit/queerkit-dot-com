@@ -62,17 +62,25 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
 
 <template>
   <UPage>
-    <UPageHero title="Queer Kit" description="Your guide to all things queer." orientation="vertical" :links="heroLinks"/>
+    <UPageHero title="Queer Kit" description="Your guide to all things queer." orientation="vertical" reverse :links="heroLinks">
+      <UIcon name="first-party:logomark-color" class="h-48 w-auto" />
+    </UPageHero>
     <UPageSection variant="outline" title="Knowledge Base" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." headline="Learn" icon="lucide:book-open" :features="projectsFeatures" :links="projectsLinks" orientation="horizontal">
       <RLPlaceholder class="h-full"/>
     </UPageSection>
     <UMarquee>
-      <UIcon name="lucide:flag" class="size-10 shrink-0" />
-      <UIcon name="lucide:flag" class="size-10 shrink-0" />
-      <UIcon name="lucide:flag" class="size-10 shrink-0" />
-      <UIcon name="lucide:flag" class="size-10 shrink-0" />
-      <UIcon name="lucide:flag" class="size-10 shrink-0" />
-      <UIcon name="lucide:flag" class="size-10 shrink-0" />
+      <UIcon name="flags:flag_queer" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_transgender" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_genderfluid" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_agender" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_gay" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_lesbian" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_bisexual" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_pansexual" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_polisexual" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_demisexual" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_intersex" class="size-24 shrink-0" />
+      <UIcon name="flags:flag_nonmonogamous" class="size-24 shrink-0" />
     </UMarquee>
     <UPageSection title="Latest Blog Posts" description="View articles by our community members.">
       <UBlogPosts>

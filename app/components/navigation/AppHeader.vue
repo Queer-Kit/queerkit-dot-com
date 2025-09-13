@@ -40,7 +40,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 <template>
   <UHeader mode="slideover" toggle-side="left" to="/">
     <template #title>
-      <UIcon name="first-party:logomark-white" class="h-12" />
+      <UIcon name="first-party:logomark-color" class="h-12" />
     </template>
     <UNavigationMenu :items="items" variant="link"/>
     <template #right>
