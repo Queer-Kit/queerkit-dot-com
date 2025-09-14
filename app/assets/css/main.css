@@ -25,9 +25,8 @@
   --text-hero: 6rem;
 }
 
-*:focus {
-  outline: 2px solid var(--color-primary-500);
-  outline-offset: 2px;
+:root {
+  --ui-container: 90rem;
 }
 
 /* region Scrollbar */
