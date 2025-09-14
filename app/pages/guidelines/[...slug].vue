@@ -2,6 +2,7 @@
 import { mapContentNavigation } from '@nuxt/ui/utils/content'
 import { findPageBreadcrumb } from '@nuxt/content/utils'
 import type { PageAnchor } from '@nuxt/ui'
+import type { PageLink } from '@nuxt/ui'
 
 definePageMeta({
   layout: 'guidelines'
@@ -32,7 +33,7 @@ const breadcrumb = computed(() =>
 
 const lastModified = useDateFormat(page.value.lastModified, 'DD/MM/YYYY')
 
-const links: PageAnchor[] = [{
+const pageAnchors: PageAnchor[] = [{
   label: 'Documentation',
   icon: 'i-lucide-book-open',
   to: '/docs/getting-started'
@@ -51,6 +52,24 @@ const links: PageAnchor[] = [{
   to: 'https://github.com/nuxt/ui/releases',
   target: '_blank'
 }]
+
+const pageLinks = ref<PageLink[]>([
+  {
+    label: 'Share Page',
+    icon: 'lucide:send',
+    to: 'https://github.com/nuxt/ui/blob/v4/docs/content/3.components/page-links.md'
+  },
+  {
+    label: 'Star on GitHub',
+    icon: 'i-lucide-star',
+    to: 'https://github.com/nuxt/ui'
+  },
+  {
+    label: 'Releases',
+    icon: 'i-lucide-rocket',
+    to: 'https://github.com/nuxt/ui/releases'
+  }
+])
 </script>
 
 <template>
@@ -59,7 +78,7 @@ const links: PageAnchor[] = [{
       <template #left>
         <UPageAside>
           <template #top>
-            <UPageAnchors :links="links" class="w-full" />
+            <UPageAnchors :links="pageAnchors" class="w-full" />
           </template>
           <RLLayoutBox
             direction="vertical"
@@ -84,6 +103,7 @@ const links: PageAnchor[] = [{
           v-if="page.body"
           :value="page"
         />
+        <Feedback :page="page" />
         <USeparator v-if="surround?.length" />
         <UContentSurround :surround="surround" />
       </UPageBody>
@@ -92,10 +112,13 @@ const links: PageAnchor[] = [{
           direction="vertical"
           gap="md"
         >
-          <UContentToc title="Table of Contents" :links="page.body.toc.links" highlight />
-          <USeparator />
-          <UButton variant="link" leadingIcon="lucide:file-edit" label="Edit Page"/>
-          <span class="text-muted text-sm">Last Modified: <time :datetime="page.lastModified">{{ lastModified }}</time></span>
+          <UContentToc title="Table of Contents" :links="page.body.toc.links" highlight>
+          <template #bottom>
+            <USeparator />
+            <UPageLinks title="Links" :links="pageLinks"/>
+            <span class="text-muted text-sm">Last Modified: <time :datetime="page.lastModified">{{ lastModified }}</time></span>
+          </template>
+          </UContentToc>
         </RLLayoutBox>
       </template>
     </UPage>

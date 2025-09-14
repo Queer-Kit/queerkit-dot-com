@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { PageLink } from "@nuxt/ui";
+
 const route = useRoute()
 
 const { data: blog } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
@@ -23,6 +25,24 @@ useSeoMeta({
   description,
   ogDescription: description
 })
+
+const pageLinks = ref<PageLink[]>([
+  {
+    label: 'Share Post',
+    icon: 'lucide:send',
+    to: 'https://github.com/nuxt/ui/blob/v4/docs/content/3.components/page-links.md'
+  },
+  {
+    label: 'Star on GitHub',
+    icon: 'i-lucide-star',
+    to: 'https://github.com/nuxt/ui'
+  },
+  {
+    label: 'Releases',
+    icon: 'i-lucide-rocket',
+    to: 'https://github.com/nuxt/ui/releases'
+  }
+])
 </script>
 
 <template>
@@ -58,7 +78,13 @@ useSeoMeta({
         <UContentSurround :surround="surround" />
       </UPageBody>
       <template v-if="blog?.body?.toc?.links?.length" #right>
-        <UContentToc title="Table of Contents" :links="blog.body.toc.links" highlight />
+        <UContentToc title="Table of Contents" :links="blog.body.toc.links" highlight>
+          <template #bottom>
+            <USeparator />
+            <UPageLinks title="Links" :links="pageLinks"/>
+            <span class="text-muted text-sm">Date Posted: <time :datetime="page.datePosted">{{ datePosted }}</time></span>
+          </template>
+        </UContentToc>
       </template>
     </UPage>
   </UContainer>
