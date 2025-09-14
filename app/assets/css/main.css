@@ -25,6 +25,11 @@
   --text-hero: 6rem;
 }
 
+*:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
 /* region Scrollbar */
 body::-webkit-scrollbar,
 html::-webkit-scrollbar {
@@ -39,5 +44,17 @@ html::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb,
 html::-webkit-scrollbar-thumb {
     background: var(--color-primary-300);
+}
+/* endregion */
+
+/* region Focus & Selection */
+*:focus {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+::selection {
+  background-color: var(--color-primary-500);
+  color: var(--text-color-highlighted);
 }
 /* endregion */
