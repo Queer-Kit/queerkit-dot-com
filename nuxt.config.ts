@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@nuxthub/core',
     '@nuxt/scripts',
     '@nuxtjs/turnstile',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
   hub: {
     blob: true,
