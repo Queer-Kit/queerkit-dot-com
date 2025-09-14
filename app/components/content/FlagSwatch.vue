@@ -4,48 +4,25 @@ const props = defineProps<{
   png: string
   webp: string
   svg: string
-}>();
-
-const toast = useToast()
-
-const copyToClipboard = async (text: string) => {
-  try {
-    await navigator.clipboard.writeText(text);
-    toast.add(
-      {
-        title: 'Color copied to clipboard!',
-        description: text,
-        color: 'success',
-      }
-    )
-  } catch (err) {
-    toast.add(
-      {
-        title: 'Failed to copy color to clipboard!',
-        description: 'An unexpected error occurred. Please try again.',
-        color: 'error',
-      }
-    )
-  }
-};
+}>()
 </script>
 
 <template>
   <UCard>
     <RLLayoutBox
-      direction="vertical"
+      direction="horizontal"
       gap="sm"
     >
-      <NuxtImg :src="props.webp"/>
+      <NuxtImg :src="props.webp" class="h-fit w-auto"/>
       <RLLayoutBox
-        direction="horizontal"
-        gap="md"
-        justifyContent="between"
+        direction="vertical"
+        gap="sm"
+        justifyContent="center"
       >
-        <UButton variant="outline" size="sm" icon="lucide:download" label="Download JPG" class="w-40" to="" />
-        <UButton variant="outline" size="sm" icon="lucide:download" label="Download PNG" class="w-40" to="" />
-        <UButton variant="outline" size="sm" icon="lucide:download" label="Download WEBP" class="w-40" to="" />
-        <UButton variant="outline" size="sm" icon="lucide:download" label="Download SVG" class="w-40" to="" />
+        <UButton variant="outline" size="sm" icon="lucide:download" label="Download JPG" class="w-40" :to="props.png" target="_blank" />
+        <UButton variant="outline" size="sm" icon="lucide:download" label="Download PNG" class="w-40" :to="props.png" target="_blank" />
+        <UButton variant="outline" size="sm" icon="lucide:download" label="Download WEBP" class="w-40" :to="props.webp" target="_blank" />
+        <UButton variant="outline" size="sm" icon="lucide:download" label="Download SVG" class="w-40" :to="props.svg" target="_blank" />
       </RLLayoutBox>
     </RLLayoutBox>
   </UCard>
