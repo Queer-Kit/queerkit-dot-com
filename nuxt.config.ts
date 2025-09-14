@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxthub/core',
     '@nuxt/scripts',
-    '@nuxtjs/turnstile'
+    '@nuxtjs/turnstile',
+    '@nuxtjs/sitemap'
   ],
   hub: {
     blob: true,
@@ -78,6 +79,10 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       ],
     },
+  },
+  site: {
+    url: 'https://queerkit.com',
+    name: 'Queer Kit'
   },
   css: ["./app/assets/css/main.css"],
   nitro: {
