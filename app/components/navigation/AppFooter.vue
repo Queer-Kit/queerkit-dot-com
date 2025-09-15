@@ -58,27 +58,29 @@ const columns: FooterColumn[] = [
       </RLLayoutBox>
     </template>
     <template #right>
-      <RLLayoutBox
-        direction="vertical"
-        gap="md"
-        align-items="end"
-      >
+      <UContainer>
         <RLLayoutBox
-          direction="horizontal"
-          gap="sm"
-        >
-          <UButton size="xl" variant="ghost" color="neutral" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" />
-          <UButton size="xl" variant="ghost" color="neutral" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979"/>
-          <UButton size="xl" variant="ghost" color="neutral" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" />
-        </RLLayoutBox>
-        <RLLayoutBox
-          direction="horizontal"
+          direction="vertical"
           gap="md"
+          align-items="end"
         >
-          <UColorModeSelect class="w-48"/>
-          <ULocaleSelect v-model="locale" :locales="[ar, en, es, fr, ja, ko, pt, ro, zh_cn]" @update:model-value="setLocale($event)" color="secondary" class="w-48" />
+          <RLLayoutBox
+            direction="horizontal"
+            gap="sm"
+          >
+            <UButton size="xl" variant="ghost" color="neutral" icon="mdi:instagram" to="https://www.instagram.com/idantity.me" />
+            <UButton size="xl" variant="ghost" color="neutral" icon="ic:baseline-discord" to="https://discord.com/users/682049695173836979"/>
+            <UButton size="xl" variant="ghost" color="neutral" icon="mdi:spotify" to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222" />
+          </RLLayoutBox>
+          <RLLayoutBox
+            direction="horizontal"
+            gap="md"
+          >
+            <UColorModeSelect class="w-48"/>
+            <ULocaleSelect v-model="locale" :locales="[ar, en, es, fr, ja, ko, pt, ro, zh_cn]" @update:model-value="setLocale($event)" color="secondary" class="w-48" />
+          </RLLayoutBox>
         </RLLayoutBox>
-      </RLLayoutBox>
+      </UContainer>
     </template>
   </UFooter>
 </template>
