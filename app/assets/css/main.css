@@ -23,6 +23,9 @@
   --text-3xl: 1.875rem;
   --text-4xl: 2.25rem;
   --text-hero: 6rem;
+
+  --color-black: oklch(0.235 0 0);
+  --color-white: oklch(0.9612 0 0);
 }
 
 :root {

@@ -18,6 +18,10 @@ export default defineNuxtConfig({
     blob: true,
     database: true
   },
+  colorMode: {
+    preference: 'light',
+    fallback: 'light',
+  },
   i18n: {
     defaultLocale: 'en',
     locales: [

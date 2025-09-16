@@ -76,7 +76,6 @@ const columns: FooterColumn[] = [
             direction="horizontal"
             gap="md"
           >
-            <UColorModeSelect class="w-48"/>
             <ULocaleSelect v-model="locale" :locales="[ar, en, es, fr, ja, ko, pt, ro, zh_cn]" @update:model-value="setLocale($event)" color="secondary" class="w-48" />
           </RLLayoutBox>
         </RLLayoutBox>
