@@ -113,11 +113,11 @@ const pageLinks = ref<PageLink[]>([
           gap="md"
         >
           <UContentToc title="Table of Contents" :links="page.body.toc.links" highlight>
-          <template #bottom>
-            <USeparator />
-            <UPageLinks title="Links" :links="pageLinks"/>
-            <span class="text-muted text-sm">Last Modified: <time :datetime="page.lastModified">{{ lastModified }}</time></span>
-          </template>
+            <template #bottom>
+              <USeparator />
+              <UPageLinks title="Links" :links="pageLinks"/>
+              <span class="text-muted text-sm">Last Modified: <time :datetime="page.lastModified">{{ lastModified }}</time></span>
+            </template>
           </UContentToc>
         </RLLayoutBox>
       </template>
