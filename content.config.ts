@@ -41,7 +41,7 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
-        type: z.enum(['Blog Post']),
+        type: z.enum(['Blog Post, Personal Story']),
         image: createImageSchema(),
         datePosted: z.date(),
         links: z.array(createLinkSchema()),
