@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <AppHeader/>
+  <AppHeader />
   <UMain>
     <slot />
   </UMain>

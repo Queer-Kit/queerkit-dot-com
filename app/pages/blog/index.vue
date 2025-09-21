@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: posts } = await useAsyncData(route.path, () => queryCollection('blog').all())
+const { data: posts } = await useAsyncData(route.path, () => queryCollection(`blog`).all())
 </script>
 
 <template>

@@ -3,9 +3,9 @@
 </script>
 
 <template>
-  <AppHeader/>
+  <AppHeader />
   <UMain>
-    <slot/>
+    <slot />
   </UMain>
   <AppFooter />
 </template>

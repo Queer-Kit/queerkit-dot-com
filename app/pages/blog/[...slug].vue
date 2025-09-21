@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { PageLink } from "@nuxt/ui";
+import type { PageLink } from "@nuxt/ui"
 
 const route = useRoute()
 
-const { data: blog } = await useAsyncData(route.path, () => queryCollection('blog').path(route.path).first())
+const { data: blog } = await useAsyncData(route.path, () => queryCollection(`blog`).path(route.path).first())
 if (!blog.value) {
-  throw createError({ statusCode: 404, statusMessage: 'blog not found', fatal: true })
+  throw createError({ statusCode: 404, statusMessage: `blog not found`, fatal: true })
 }
 
 const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
-  return queryCollectionItemSurroundings('blog', route.path, {
-    fields: ['description']
+  return queryCollectionItemSurroundings(`blog`, route.path, {
+    fields: [`description`]
   })
 })
 
 const title = blog.value.seo?.title || blog.value.title
 const description = blog.value.seo?.description || blog.value.description
 
-const datePosted = useDateFormat(blog.value.datePosted, 'DD/MM/YYYY')
+const datePosted = useDateFormat(blog.value.datePosted, `DD/MM/YYYY`)
 
 useSeoMeta({
   title,
@@ -28,19 +28,19 @@ useSeoMeta({
 
 const pageLinks = ref<PageLink[]>([
   {
-    label: 'Share Post',
-    icon: 'lucide:send',
-    to: 'https://github.com/nuxt/ui/blob/v4/docs/content/3.components/page-links.md'
+    label: `Share Post`,
+    icon: `lucide:send`,
+    to: `https://github.com/nuxt/ui/blob/v4/docs/content/3.components/page-links.md`
   },
   {
-    label: 'Star on GitHub',
-    icon: 'i-lucide-star',
-    to: 'https://github.com/nuxt/ui'
+    label: `Star on GitHub`,
+    icon: `i-lucide-star`,
+    to: `https://github.com/nuxt/ui`
   },
   {
-    label: 'Releases',
-    icon: 'i-lucide-rocket',
-    to: 'https://github.com/nuxt/ui/releases'
+    label: `Releases`,
+    icon: `i-lucide-rocket`,
+    to: `https://github.com/nuxt/ui/releases`
   }
 ])
 </script>
@@ -81,7 +81,7 @@ const pageLinks = ref<PageLink[]>([
         <UContentToc title="Table of Contents" :links="blog.body.toc.links" highlight>
           <template #bottom>
             <USeparator />
-            <UPageLinks title="Links" :links="pageLinks"/>
+            <UPageLinks title="Links" :links="pageLinks" />
             <span class="text-muted text-sm">Date Posted: <time :datetime="page.datePosted">{{ datePosted }}</time></span>
           </template>
         </UContentToc>

@@ -1,4 +1,5 @@
-<script setup lang="ts">interface TeamCardProps {
+<script setup lang="ts">
+interface TeamCardProps {
   src: string
   alt: string
   name: string

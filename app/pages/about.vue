@@ -1,58 +1,58 @@
 <script setup lang="ts">
 useHead({
-  title: 'About',
-});
+  title: `About`
+})
 
 const team = ref([
   {
-    src: 'https://cdn.queerkit.com/images/team/bruna-corso.webp',
-    icon: 'flags:flag_bisexual',
-    name: 'Bruna Corso',
+    src: `https://cdn.queerkit.com/images/team/bruna-corso.webp`,
+    icon: `flags:flag_bisexual`,
+    name: `Bruna Corso`,
     badges: [
-      'Co-founder',
-      'Designer'
+      `Co-founder`,
+      `Designer`
     ],
-    description: 'Lorem ipsum dolor sit amet.',
+    description: `Lorem ipsum dolor sit amet.`,
     links: [
       {
-        to: 'https://instagram.com/brunaluizacorso/',
-        icon: 'mdi:instagram',
+        to: `https://instagram.com/brunaluizacorso/`,
+        icon: `mdi:instagram`
       }
     ]
   },
   {
-    src: 'https://cdn.queerkit.com/images/team/daniel-marchi.webp',
-    icon: 'flags:flag_gay',
-    name: 'Daniel Marchi',
+    src: `https://cdn.queerkit.com/images/team/daniel-marchi.webp`,
+    icon: `flags:flag_gay`,
+    name: `Daniel Marchi`,
     badges: [
-      'Co-founder',
-      'Developer'
+      `Co-founder`,
+      `Developer`
     ],
-    description: 'Lorem ipsum dolor sit amet.',
+    description: `Lorem ipsum dolor sit amet.`,
     links: [
       {
-        to: 'https://instagram.com/idantity.me/',
-        icon: 'mdi:instagram',
+        to: `https://instagram.com/idantity.me/`,
+        icon: `mdi:instagram`
       },
       {
-        to: 'https://github.com/idantitydotme/',
-        icon: 'mdi:github',
+        to: `https://github.com/idantitydotme/`,
+        icon: `mdi:github`
       }
     ]
   },
   {
-    src: 'https://cdn.queerkit.com/images/team/gustavo-cardoso.webp',
-    icon: 'flags:flag_gay',
-    name: 'Gustavo Cardoso',
+    src: `https://cdn.queerkit.com/images/team/gustavo-cardoso.webp`,
+    icon: `flags:flag_gay`,
+    name: `Gustavo Cardoso`,
     badges: [
-      'Co-founder',
-      'Designer'
+      `Co-founder`,
+      `Designer`
     ],
-    description: 'Lorem ipsum dolor sit amet.',
+    description: `Lorem ipsum dolor sit amet.`,
     links: [
       {
-        to: 'https://instagram.com/gusfcardoso/',
-        icon: 'mdi:instagram',
+        to: `https://instagram.com/gusfcardoso/`,
+        icon: `mdi:instagram`
       }
     ]
   }
@@ -62,10 +62,7 @@ const team = ref([
 <template>
   <UPage>
     <UContainer>
-
-      <UPageSection title="History" description="How we got to today.">
-
-      </UPageSection>
+      <UPageSection title="History" description="How we got to today." />
       <UPageSection title="Team" description="Queer Kit is developed and maintained by these wonderful people.">
         <UPageColumns>
           <UPageCard
@@ -82,7 +79,14 @@ const team = ref([
               direction="horizontal"
               gap="sm"
             >
-              <UBadge v-if="member.badges" v-for="badge in member.badges" :label="badge" color="primary" variant="subtle" class="w-fit"/>
+              <UBadge
+                v-if="member.badges"
+                v-for="badge in member.badges"
+                :label="badge"
+                color="primary"
+                variant="subtle"
+                class="w-fit"
+              />
             </RLLayoutBox>
             <template #footer>
               <RLLayoutBox

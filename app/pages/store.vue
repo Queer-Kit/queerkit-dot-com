@@ -1,11 +1,11 @@
 <script setup lang="ts">
 useHead({
-  title: 'Store',
-});
+  title: `Store`
+})
 </script>
 
 <template>
-
+  <div />
 </template>
 
 <style scoped>

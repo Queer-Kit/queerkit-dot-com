@@ -3,9 +3,9 @@
 @source "../../../content/**/*";
 
 @theme static {
-  --font-sans: 'Noto Sans', sans-serif;
-  --font-serif: 'Noto Serif', serif;
-  --font-mono: 'Noto Sans Mono', monospace;
+  --font-sans: "Noto Sans", sans-serif;
+  --font-serif: "Noto Serif", serif;
+  --font-mono: "Noto Sans Mono", monospace;
 
   --breakpoint-xs: 320px;
   --breakpoint-sm: 640px;
@@ -35,17 +35,17 @@
 /* region Scrollbar */
 body::-webkit-scrollbar,
 html::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 
 body::-webkit-scrollbar-track,
 html::-webkit-scrollbar-track {
-    background: var(--color-primary-900);
+  background: var(--color-primary-900);
 }
 
 body::-webkit-scrollbar-thumb,
 html::-webkit-scrollbar-thumb {
-    background: var(--color-primary-300);
+  background: var(--color-primary-300);
 }
 /* endregion */
 

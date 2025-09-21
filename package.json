@@ -8,17 +8,17 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:neon:generate": "drizzle-kit generate:pg --config=./server/database/drizzle.neon.config.ts",
-    "db:neon:push": "drizzle-kit push:pg --config=./server/database/drizzle.neon.config.ts",
-    "db:d1:generate": "drizzle-kit generate:sqlite --config=./server/database/drizzle.d1.config.ts",
-    "db:d1:push": "drizzle-kit push:sqlite --config=./server/database/drizzle.d1.config.ts",
-    "db:all:migrate": "pnpm run db:neon:generate && pnpm run db:neon:push && pnpm run db:d1:generate && pnpm run db:d1:push"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
     "@kristianbinau/nuxt-maintenance-mode": "0.0.6",
     "@neondatabase/serverless": "^1.0.1",
     "@nuxt/content": "^3.6.3",
-    "@nuxt/eslint": "^1.9.0",
+    "@nuxt/eslint-config": "^1.9.0",
     "@nuxt/image": "^1.11.0",
     "@nuxt/scripts": "0.11.13",
     "@nuxt/ui": "4.0.0-alpha.1",
@@ -39,11 +39,16 @@
     "nuxt": "^4.1.0",
     "nuxt-og-image": "^5.1.9",
     "sharp": "^0.34.3",
-    "typescript": "^5.9.2",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   },
   "overrides": {
     "vite": "npm:rolldown-vite@latest"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.9.0",
+    "eslint": "^9.36.0",
+    "eslint-plugin-format": "^1.0.2",
+    "typescript": "^5.9.2"
   }
 }

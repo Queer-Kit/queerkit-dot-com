@@ -2,60 +2,60 @@
 import type { AccordionItem } from '@nuxt/ui'
 
 useHead({
-  title: 'Home',
-});
+  title: `Home`
+})
 
 const heroLinks = ref([
   {
-    label: 'Get started',
-    to: '/docs/getting-started',
-    icon: 'i-lucide-square-play'
+    label: `Get started`,
+    to: `/docs/getting-started`,
+    icon: `i-lucide-square-play`
   },
   {
-    label: 'Learn more',
-    to: '/docs/getting-started/theme',
-    color: 'neutral',
-    variant: 'subtle',
-    trailingIcon: 'i-lucide-arrow-right'
+    label: `Learn more`,
+    to: `/docs/getting-started/theme`,
+    color: `neutral`,
+    variant: `subtle`,
+    trailingIcon: `i-lucide-arrow-right`
   }
 ])
 
 const projectsFeatures = ref([
   {
-    title: 'Terms',
-    description: "Learn what each letter represents in various acronyms, as well as various terms used within the queer community.",
-    icon: 'lucide:whole-word',
+    title: `Terms`,
+    description: `Learn what each letter represents in various acronyms, as well as various terms used within the queer community.`,
+    icon: `lucide:whole-word`
   },
   {
-    title: 'Flags',
-    description: "Find out the various flags representing various groups within the community, as well as their most widely accepted colors and designs.",
-    icon: 'lucide:flag',
+    title: `Flags`,
+    description: `Find out the various flags representing various groups within the community, as well as their most widely accepted colors and designs.`,
+    icon: `lucide:flag`
   },
   {
-    title: 'Lorem',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    icon: 'lucide:x',
+    title: `Lorem`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+    icon: `lucide:x`
   }
 ])
 
 const projectsLinks = ref([
   {
-    label: 'Lorem',
-    color: 'primary',
-    to: '/guidelines'
+    label: `Lorem`,
+    color: `primary`,
+    to: `/guidelines`
   }
 ])
 
-const { data: posts } = await useAsyncData('posts', () => queryCollection('blog').all())
+const { data: posts } = await useAsyncData(`posts`, () => queryCollection(`blog`).all())
 
 const frequentlyAskedQuestions = ref<AccordionItem[]>([
   {
-    label: 'I identify as something not currently represented in this website, why is that?',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    label: `I identify as something not currently represented in this website, why is that?`,
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
   },
   {
-    label: 'Lorem ipsum dolor sit amet?',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    label: `Lorem ipsum dolor sit amet?`,
+    content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
   }
 ])
 </script>
@@ -65,8 +65,17 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
     <UPageHero title="Queer Kit" description="Your guide to all things queer." orientation="vertical" reverse :links="heroLinks">
       <UIcon name="first-party:logomark-color" class="h-48 w-auto" />
     </UPageHero>
-    <UPageSection variant="outline" title="Knowledge Base" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." headline="Learn" icon="lucide:book-open" :features="projectsFeatures" :links="projectsLinks" orientation="horizontal">
-      <RLPlaceholder class="h-full"/>
+    <UPageSection
+      variant="outline"
+      title="Knowledge Base"
+      description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      headline="Learn"
+      icon="lucide:book-open"
+      :features="projectsFeatures"
+      :links="projectsLinks"
+      orientation="horizontal"
+    >
+      <RLPlaceholder class="h-full" />
     </UPageSection>
     <UMarquee>
       <UIcon name="flags:flag_queer" class="size-24 shrink-0" />
