@@ -39,7 +39,9 @@ export default defineNuxtConfig({
   css: [`./app/assets/css/main.css`],
   site: {
     url: `https://queerkit.com`,
-    name: `Queer Kit`
+    name: `Queer Kit`,
+    // Should be changed to true upon release to the public.
+    indexable: false
   },
   colorMode: {
     preference: `light`,
@@ -113,6 +115,11 @@ export default defineNuxtConfig({
         normalizeIconName: false
       }
     ]
+  },
+  robots: {
+    blockAiBots: false,
+    blockNonSeoBots: false,
+    disallow: [`/internal`]
   },
   turnstile: {
     siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY
