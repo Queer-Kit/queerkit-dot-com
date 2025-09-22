@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     `@nuxtjs/turnstile`,
     `@nuxtjs/sitemap`,
     `@nuxtjs/robots`,
-    `@nuxt/eslint`
+    `@nuxt/eslint`,
+    `@pinia/nuxt`
   ],
   components: [
     {
