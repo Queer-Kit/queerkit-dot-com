@@ -74,26 +74,41 @@ const team = ref([
             :description="member.description"
             reverse
           >
-            <NuxtImg v-if="member.src" :src="member.src" :alt="member.name" class="w-full" />
+            <NuxtImg
+              v-if="member.src"
+              :src="member.src"
+              :alt="member.name"
+              class="w-full"
+            />
             <RLLayoutBox
               direction="horizontal"
               gap="sm"
             >
-              <UBadge
-                v-if="member.badges"
-                v-for="badge in member.badges"
-                :label="badge"
-                color="primary"
-                variant="subtle"
-                class="w-fit"
-              />
+              <template v-if="member.badges">
+                <UBadge
+                  v-for="badge in member.badges"
+                  :key="badge"
+                  :label="badge"
+                  color="primary"
+                  variant="subtle"
+                  class="w-fit"
+                />
+              </template>
             </RLLayoutBox>
             <template #footer>
               <RLLayoutBox
                 direction="horizontal"
                 gap="sm"
               >
-                <UButton v-if="member.links" v-for="link in member.links" variant="outline" :to="link.to" :icon="link.icon" />
+                <template v-if="member.links">
+                  <UButton
+                    v-for="link in member.links"
+                    :key="link"
+                    variant="outline"
+                    :to="link.to"
+                    :icon="link.icon"
+                  />
+                </template>
               </RLLayoutBox>
             </template>
           </UPageCard>

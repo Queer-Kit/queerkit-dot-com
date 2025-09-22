@@ -97,7 +97,14 @@ const pageLinks = ref<PageLink[]>([
         :links="page.links"
       />
       <UPageBody>
-        <UBadge v-if="page.tags" v-for="tag in page.tags" :key="tag" variant="soft" :label="tag" />
+        <template v-if="page.tags">
+          <UBadge
+            v-for="tag in page.tags"
+            :key="tag"
+            variant="soft"
+            :label="tag"
+          />
+        </template>
         <ContentRenderer
           v-if="page.body"
           :value="page"
