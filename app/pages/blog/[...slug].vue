@@ -1,16 +1,29 @@
 <script setup lang="ts">
-import type { PageLink } from "@nuxt/ui"
+import type {
+  PageLink
+} from "@nuxt/ui"
 
 const route = useRoute()
 
-const { data: blog } = await useAsyncData(route.path, () => queryCollection(`blog`).path(route.path).first())
+const {
+  data: blog
+} = await useAsyncData(route.path, () => queryCollection(`blog`).path(route.path).
+  first())
 if (!blog.value) {
-  throw createError({ statusCode: 404, statusMessage: `blog not found`, fatal: true })
+  throw createError({
+    statusCode: 404,
+    statusMessage: `blog not found`,
+    fatal: true
+  })
 }
 
-const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
+const {
+  data: surround
+} = await useAsyncData(`${ route.path }-surround`, () => {
   return queryCollectionItemSurroundings(`blog`, route.path, {
-    fields: [`description`]
+    fields: [
+      `description`
+    ]
   })
 })
 

@@ -1,17 +1,29 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent, SelectItem } from '@nuxt/ui'
+import type {
+  FormSubmitEvent, SelectItem
+} from '@nuxt/ui'
 
 useHead({
   title: `Certification`
 })
 
-const pronouns = ref([`He / Him`, `She / Her`, `They / Them`])
+const pronouns = ref([
+  `He / Him`,
+  `She / Her`,
+  `They / Them`
+])
 
 const schema = z.object({
-  first_name: z.string().min(2, `First name must be between 2 and 24 characters long.`).max(24, `First name must be between 2 and 24 characters long.`),
-  last_name: z.string().min(2, `Last name must be between 2 and 24 characters long.`).max(24, `Last name must be between 2 and 24 characters long.`),
-  pronouns: z.enum([`He / Him`, `She / Her`, `They / Them`]),
+  first_name: z.string().min(2, `First name must be between 2 and 24 characters long.`).
+    max(24, `First name must be between 2 and 24 characters long.`),
+  last_name: z.string().min(2, `Last name must be between 2 and 24 characters long.`).
+    max(24, `Last name must be between 2 and 24 characters long.`),
+  pronouns: z.enum([
+    `He / Him`,
+    `She / Her`,
+    `They / Them`
+  ]),
   certification: z.string(),
   terms: z.boolean().refine((val) => val, {
     message: `You must agree to the terms of service.`
@@ -30,12 +42,13 @@ const state = reactive<Schema>({
 
 const emissionDate = computed(() => {
   const date = new Date()
-  return date.toLocaleDateString() // Formats as 'MM/DD/YYYY'
+  return date.toLocaleDateString()
 })
 
 const expirationDate = computed(() => {
   const date = new Date()
-  date.setFullYear(date.getFullYear() + 1) // Add one year
+  // Add one year
+  date.setFullYear(date.getFullYear() + 1)
   return date.toLocaleDateString()
 })
 
@@ -80,16 +93,18 @@ function generateCertificateId(): string {
 
   // Get the month (0-11) and day (1-31) and pad them
   const month = (now.getMonth() + 1).toString().padStart(2, `0`)
-  const day = now.getDate().toString().padStart(2, `0`)
+  const day = now.getDate().toString().
+    padStart(2, `0`)
 
   // Combine them into a short date code
-  const datePart = `${month}${day}`
+  const datePart = `${ month }${ day }`
 
   // Generate a random 4-digit number (from 0000 to 9999)
-  const randomPart = Math.floor(Math.random() * 10000).toString().padStart(4, `0`)
+  const randomPart = Math.floor(Math.random() * 10000).toString().
+    padStart(4, `0`)
 
   // Combine the date code and the random part with a hyphen
-  return `${datePart}-${randomPart}`
+  return `${ datePart }-${ randomPart }`
 }
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {

@@ -9,24 +9,20 @@ const props = defineProps<{
 
 const toast = useToast()
 
-const copyToClipboard = async (text: string) => {
+const copyToClipboard = async(text: string) => {
   try {
     await navigator.clipboard.writeText(text)
-    toast.add(
-      {
-        title: `Color copied to clipboard!`,
-        description: text,
-        color: `success`
-      }
-    )
-  } catch (err) {
-    toast.add(
-      {
-        title: `Failed to copy color to clipboard!`,
-        description: `An unexpected error occurred. Please try again.`,
-        color: `error`
-      }
-    )
+    toast.add({
+      title: `Color copied to clipboard!`,
+      description: text,
+      color: `success`
+    })
+  } catch(err) {
+    toast.add({
+      title: `Failed to copy color to clipboard!`,
+      description: `An unexpected error occurred. Please try again.`,
+      color: `error`
+    })
   }
 }
 </script>

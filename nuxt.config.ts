@@ -1,3 +1,5 @@
+import env from './types/env'
+
 export default defineNuxtConfig({
 
   modules: [
@@ -21,22 +23,39 @@ export default defineNuxtConfig({
       pathPrefix: false
     }
   ],
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true
+  },
   app: {
     head: {
       title: `Queer Kit`,
       titleTemplate: `%s | Queer Kit`,
       meta: [
-        { name: `description`, content: `` },
-        { name: `author`, content: `Queer Kit` },
-        { name: `creator`, content: `Queer Kit` }
+        {
+          name: `description`,
+          content: ``
+        },
+        {
+          name: `author`,
+          content: `Queer Kit`
+        },
+        {
+          name: `creator`,
+          content: `Queer Kit`
+        }
       ],
       link: [
-        { rel: `icon`, type: `image/svg+xml`, href: `/favicon.svg` }
+        {
+          rel: `icon`,
+          type: `image/svg+xml`,
+          href: `/favicon.svg`
+        }
       ]
     }
   },
-  css: [`./app/assets/css/main.css`],
+  css: [
+    `./app/assets/css/main.css`
+  ],
   site: {
     url: `https://queerkit.com`,
     name: `Queer Kit`,
@@ -61,12 +80,13 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      constructionPassword: process.env.SITE_PASSWORD || `secret`
+      constructionPassword: env.SITE_PASSWORD || `secret`
     },
     turnstile: {
-      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY
+      secretKey: env.NUXT_TURNSTILE_SECRET_KEY
     }
-  }, compatibilityDate: `2025-07-15`,
+  },
+  compatibilityDate: `2025-07-15`,
   nitro: {
     prerender: {
       crawlLinks: true,
@@ -79,18 +99,50 @@ export default defineNuxtConfig({
     blob: true,
     database: true
   },
+  eslint: {
+    config: {
+      stylistic: true
+    }
+  },
   i18n: {
     defaultLocale: `en`,
     locales: [
-      { code: `ar`, name: `العربية` },
-      { code: `en`, name: `English` },
-      { code: `es`, name: `Español` },
-      { code: `fr`, name: `Français` },
-      { code: `ja`, name: `日本語` },
-      { code: `ko`, name: `한국어` },
-      { code: `pt`, name: `Português` },
-      { code: `ro`, name: `Română` },
-      { code: `zh_cn`, name: `简体中文` }
+      {
+        code: `ar`,
+        name: `العربية`
+      },
+      {
+        code: `en`,
+        name: `English`
+      },
+      {
+        code: `es`,
+        name: `Español`
+      },
+      {
+        code: `fr`,
+        name: `Français`
+      },
+      {
+        code: `ja`,
+        name: `日本語`
+      },
+      {
+        code: `ko`,
+        name: `한국어`
+      },
+      {
+        code: `pt`,
+        name: `Português`
+      },
+      {
+        code: `ro`,
+        name: `Română`
+      },
+      {
+        code: `zh_cn`,
+        name: `简体中文`
+      }
     ]
   },
   icon: {
@@ -119,9 +171,11 @@ export default defineNuxtConfig({
   robots: {
     blockAiBots: false,
     blockNonSeoBots: false,
-    disallow: [`/internal`]
+    disallow: [
+      `/internal`
+    ]
   },
   turnstile: {
-    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY
+    siteKey: env.NUXT_PUBLIC_TURNSTILE_SITE_KEY
   }
 })

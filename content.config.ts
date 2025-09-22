@@ -1,23 +1,47 @@
-import { defineContentConfig, defineCollection, z } from '@nuxt/content'
+import {
+  defineContentConfig, defineCollection, z
+} from '@nuxt/content'
 
-const variantEnum = z.enum([`solid`, `outline`, `subtle`, `soft`, `ghost`, `link`])
-const colorEnum = z.enum([`primary`, `secondary`, `neutral`, `error`, `warning`, `success`, `info`])
-const sizeEnum = z.enum([`xs`, `sm`, `md`, `lg`, `xl`])
+const variantEnum = z.enum([
+  `solid`,
+  `outline`,
+  `subtle`,
+  `soft`,
+  `ghost`,
+  `link`
+])
+const colorEnum = z.enum([
+  `primary`,
+  `secondary`,
+  `neutral`,
+  `error`,
+  `warning`,
+  `success`,
+  `info`
+])
 
-const createLinkSchema = () => z.object({
-  label: z.string().nonempty(),
-  to: z.string().nonempty(),
-  icon: z.string().optional().editor({ input: `icon` }),
-  size: sizeEnum.optional(),
+const Image = z.object({
+  src: z.string(),
+  alt: z.string(),
+  width: z.number().optional(),
+  height: z.number().optional()
+})
+
+const Link = z.object({
+  label: z.string(),
+  to: z.string(),
+  icon: z.string().optional(),
   trailing: z.boolean().optional(),
-  target: z.string().optional(),
   color: colorEnum.optional(),
   variant: variantEnum.optional()
 })
 
-const createImageSchema = () => z.object({
-  src: z.string().nonempty().editor({ input: `media` }),
-  alt: z.string().optional()
+const Author = z.object({
+  avatar: Image.optional(),
+  name: z.string(),
+  description: z.string().optional(),
+  username: z.string().optional(),
+  to: z.string().optional()
 })
 
 export default defineContentConfig({
@@ -28,10 +52,12 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
-        type: z.enum([`Policy`]),
+        type: z.enum([
+          `Policy`
+        ]),
         tags: z.array(z.string()),
         lastModified: z.date(),
-        links: z.array(createLinkSchema())
+        links: z.array(Link).optional()
       })
     }),
     blog: defineCollection({
@@ -40,17 +66,13 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
-        type: z.enum([`Blog Post, Personal Story`]),
-        image: createImageSchema(),
+        type: z.enum([
+          `Blog Post, Personal Story`
+        ]),
+        image: Image.optional(),
         datePosted: z.date(),
-        links: z.array(createLinkSchema()),
-        authors: z.array(
-          z.object({
-            name: z.string().nonempty(),
-            to: z.string().nonempty(),
-            avatar: z.object({ src: z.string().nonempty().editor({ input: `media` }) })
-          })
-        )
+        links: z.array(Link).optional(),
+        authors: z.array(Author).optional()
       })
     }),
     guidelines: defineCollection({
@@ -59,11 +81,15 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
-        image: createImageSchema(),
-        type: z.enum([`Gender Identity`, `Sexual Orientation`, `Romantic Orientation`]),
+        image: Image.optional(),
+        type: z.enum([
+          `Gender Identity`,
+          `Sexual Orientation`,
+          `Romantic Orientation`
+        ]),
         tags: z.array(z.string()),
         lastModified: z.date(),
-        links: z.array(createLinkSchema())
+        links: z.array(Link).optional()
       })
     })
   }

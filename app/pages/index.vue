@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import type { AccordionItem } from '@nuxt/ui'
+import type {
+  AccordionItem
+} from '@nuxt/ui'
 
 useHead({
   title: `Home`
@@ -46,7 +48,9 @@ const projectsLinks = ref([
   }
 ])
 
-const { data: posts } = await useAsyncData(`posts`, () => queryCollection(`blog`).all())
+const {
+  data: posts
+} = await useAsyncData(`posts`, () => queryCollection(`blog`).all())
 
 const frequentlyAskedQuestions = ref<AccordionItem[]>([
   {
