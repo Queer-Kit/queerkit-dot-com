@@ -108,12 +108,23 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         justify-content="center"
       >
         <UPageCard class="w-full max-w-md">
-          <UForm title="Queer Certification" :schema="schema" :state="state" @submit="onSubmit">
+          <UForm
+            title="Queer Certification"
+            :schema="schema"
+            :state="state"
+            @submit="onSubmit"
+          >
             <RLLayoutBox
               direction="vertical"
               gap="sm"
             >
-              <UFileUpload v-model="value" accept="image/*" label="Drag and drop an image here or select from your device" description="PNG, JPG or WEBP (max. 2MB)" class="w-96 min-h-48" />
+              <UFileUpload
+                v-model="value"
+                accept="image/*"
+                label="Drag and drop an image here or select from your device"
+                description="PNG, JPG or WEBP (max. 2MB)"
+                class="w-96 min-h-48"
+              />
               <RLLayoutBox
                 direction="horizontal"
                 gap="md"
@@ -136,7 +147,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                   I have read and agree to the <ULink to="/documents/terms-of-service" class="text-primary font-medium">Terms of Service</ULink>.
                 </template>
               </UCheckbox>
-              <UButton type="submit" label="Generate Certificate" color="primary" block />
+              <UButton
+                type="submit"
+                label="Generate Certificate"
+                color="primary"
+                block
+              />
             </RLLayoutBox>
           </UForm>
         </UPageCard>

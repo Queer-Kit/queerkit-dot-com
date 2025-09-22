@@ -62,7 +62,13 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
 
 <template>
   <UPage>
-    <UPageHero title="Queer Kit" description="Your guide to all things queer." orientation="vertical" reverse :links="heroLinks">
+    <UPageHero
+      title="Queer Kit"
+      description="Your guide to all things queer."
+      orientation="vertical"
+      reverse
+      :links="heroLinks"
+    >
       <UIcon name="first-party:logomark-color" class="h-48 w-auto" />
     </UPageHero>
     <UPageSection
