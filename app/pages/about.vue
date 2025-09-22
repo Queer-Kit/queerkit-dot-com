@@ -57,12 +57,16 @@ const team = ref([
     ]
   }
 ])
+
+const text = ref(`testing`)
 </script>
 
 <template>
   <UPage>
     <UContainer>
       <UPageSection title="History" description="How we got to today." />
+      <ProseCallout variant="creator" :v-model="`Testing`" />
+      <CalloutBlock v-model="text" variant="creator" />
       <UPageSection title="Team" description="Queer Kit is developed and maintained by these wonderful people.">
         <UPageColumns>
           <UPageCard
@@ -95,11 +99,12 @@ const team = ref([
                 />
               </template>
             </RLLayoutBox>
+
             <template #footer>
-              <RLLayoutBox
+              <TempRLLayoutBox>
                 direction="horizontal"
                 gap="sm"
-              >
+                >
                 <template v-if="member.links">
                   <UButton
                     v-for="link in member.links"
@@ -109,7 +114,7 @@ const team = ref([
                     :icon="link.icon"
                   />
                 </template>
-              </RLLayoutBox>
+              </TempRLLayoutBox>
             </template>
           </UPageCard>
         </UPageColumns>

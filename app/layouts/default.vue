@@ -4,11 +4,11 @@
 
 <template>
   <div>
-    <AppHeader />
+    <QKAppHeader />
     <UMain>
       <slot />
     </UMain>
-    <AppFooter />
+    <QKAppFooter />
   </div>
 </template>
 

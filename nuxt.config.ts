@@ -1,7 +1,10 @@
-import env from './types/env'
-
 export default defineNuxtConfig({
-
+  extends: [
+    [
+      `github:Rimelight-Entertainment/rimelight.com`,
+      { install: false }
+    ]
+  ],
   modules: [
     `@nuxt/ui`,
     `@nuxtjs/i18n`,
@@ -20,7 +23,8 @@ export default defineNuxtConfig({
   components: [
     {
       path: `~/components`,
-      pathPrefix: false
+      pathPrefix: false,
+      prefix: `QK`
     }
   ],
   devtools: {
@@ -80,10 +84,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      constructionPassword: env.SITE_PASSWORD || `secret`
+      constructionPassword: process.env.SITE_PASSWORD || `secret`
     },
     turnstile: {
-      secretKey: env.NUXT_TURNSTILE_SECRET_KEY
+      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY
     }
   },
   compatibilityDate: `2025-07-15`,
@@ -176,6 +180,6 @@ export default defineNuxtConfig({
     ]
   },
   turnstile: {
-    siteKey: env.NUXT_PUBLIC_TURNSTILE_SITE_KEY
+    siteKey: process.env.NUXT_PUBLIC_TURNSTILE_SITE_KEY
   }
 })

@@ -15,21 +15,21 @@
     "db:migrate": "drizzle-kit migrate"
   },
   "dependencies": {
-    "@kristianbinau/nuxt-maintenance-mode": "0.0.6",
     "@neondatabase/serverless": "^1.0.1",
     "@nuxt/content": "^3.6.3",
-    "@nuxt/eslint-config": "^1.9.0",
     "@nuxt/image": "^1.11.0",
     "@nuxt/scripts": "0.11.13",
     "@nuxt/ui": "4.0.0-alpha.1",
     "@nuxthub/core": "^0.9.0",
     "@nuxtjs/i18n": "^10.0.6",
-    "@nuxtjs/robots": "5.5.1",
-    "@nuxtjs/sitemap": "7.4.3",
+    "@nuxtjs/robots": "^5.5.1",
+    "@nuxtjs/sitemap": "^7.4.3",
     "@nuxtjs/turnstile": "1.1.0",
     "@pinia/nuxt": "^0.11.2",
+    "@types/uuid": "^10.0.0",
     "@unhead/vue": "^2.0.14",
-    "@vercel/blob": "^1.1.1",
+    "@unovis/ts": "^1.6.0",
+    "@unovis/vue": "^1.6.0",
     "@vueuse/core": "^13.9.0",
     "@vueuse/nuxt": "^13.9.0",
     "better-sqlite3": "^12.2.0",
@@ -38,8 +38,13 @@
     "drizzle-orm": "^0.44.5",
     "motion-v": "^1.7.1",
     "nuxt": "^4.1.0",
+    "nuxt-auth-utils": "^0.5.24",
     "nuxt-og-image": "^5.1.9",
+    "pg": "^8.16.3",
+    "pinia": "^3.0.3",
+    "postgres": "^3.4.7",
     "sharp": "^0.34.3",
+    "uuid": "^13.0.0",
     "vue": "^3.5.20",
     "vue-router": "^4.5.1"
   },
@@ -48,8 +53,10 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.9.0",
+    "@nuxt/eslint-config": "^1.9.0",
     "eslint": "^9.36.0",
     "eslint-plugin-format": "^1.0.2",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }
 }
