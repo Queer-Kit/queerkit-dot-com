@@ -1,12 +1,19 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
-// import noRuntimePropsDeclaration from './utils/eslint-rules/no-runtime-props-declaration.ts'
+import noRuntimePropsDeclaration from './utils/eslint-rules/no-runtime-props-declaration.ts'
 
 export default withNuxt({
   ignores: [
     `**/drizzle/*`
   ],
+  plugins: {
+    rimelight: {
+      rules: {
+        'no-runtime-props-declaration': noRuntimePropsDeclaration
+      }
+    }
+  },
   rules: {
-    // 'no-runtime-props-declaration': 'error',
+    'rimelight/no-runtime-props-declaration': `error`,
     'no-process-env': `error`,
     '@stylistic/array-bracket-newline': [
       `error`,
@@ -179,7 +186,10 @@ export default withNuxt({
     ],
     '@stylistic/no-extra-parens': [
       `error`,
-      `all`
+      `all`,
+      {
+        nestedBinaryExpressions: false
+      }
     ],
     '@stylistic/no-extra-semi': `error`,
     '@stylistic/no-floating-decimal': `error`,
@@ -196,7 +206,10 @@ export default withNuxt({
     ],
     '@stylistic/object-curly-newline': [
       `error`,
-      `always`
+      {
+        multiline: true,
+        consistent: true
+      }
     ],
     '@stylistic/object-curly-spacing': [
       `error`,
