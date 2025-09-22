@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
+const {
+
+} = defineProps<{
   hex: string
   rgb: string
   hsl: string
@@ -35,7 +37,7 @@ const copyToClipboard = async(text: string) => {
     >
       <div
         class="aspect-square"
-        :style="{ backgroundColor: props.hex, width: '100%' }"
+        :style="{ backgroundColor: hex, width: '100%' }"
       />
 
       <RLLayoutBox
@@ -49,7 +51,7 @@ const copyToClipboard = async(text: string) => {
           icon="lucide:copy"
           label="Copy HEX"
           class="w-32"
-          @click="copyToClipboard(props.hex)"
+          @click="copyToClipboard(hex)"
         />
         <UButton
           variant="outline"
@@ -57,7 +59,7 @@ const copyToClipboard = async(text: string) => {
           icon="lucide:copy"
           label="Copy RGB"
           class="w-32"
-          @click="copyToClipboard(props.rgb)"
+          @click="copyToClipboard(rgb)"
         />
         <UButton
           variant="outline"
@@ -65,7 +67,7 @@ const copyToClipboard = async(text: string) => {
           icon="lucide:copy"
           label="Copy HSL"
           class="w-32"
-          @click="copyToClipboard(props.hsl)"
+          @click="copyToClipboard(hsl)"
         />
         <UButton
           variant="outline"
@@ -73,7 +75,7 @@ const copyToClipboard = async(text: string) => {
           icon="lucide:copy"
           label="Copy CMYK"
           class="w-32"
-          @click="copyToClipboard(props.cmyk)"
+          @click="copyToClipboard(cmyk)"
         />
         <UButton
           variant="outline"
@@ -81,7 +83,7 @@ const copyToClipboard = async(text: string) => {
           icon="lucide:copy"
           label="Copy OKLCH"
           class="w-32"
-          @click="copyToClipboard(props.oklch)"
+          @click="copyToClipboard(oklch)"
         />
       </RLLayoutBox>
     </RLLayoutBox>

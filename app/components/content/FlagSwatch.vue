@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const props = defineProps<{
+const {
+
+} = defineProps<{
   jpg: string
   png: string
   webp: string
@@ -13,7 +15,7 @@ const props = defineProps<{
       direction="horizontal"
       gap="sm"
     >
-      <NuxtImg :src="props.webp" class="h-fit w-auto" />
+      <NuxtImg :src="webp" class="h-fit w-auto" />
       <RLLayoutBox
         direction="vertical"
         gap="sm"
@@ -25,7 +27,7 @@ const props = defineProps<{
           icon="lucide:download"
           label="Download JPG"
           class="w-40"
-          :to="props.png"
+          :to="png"
           target="_blank"
         />
         <UButton
@@ -34,7 +36,7 @@ const props = defineProps<{
           icon="lucide:download"
           label="Download PNG"
           class="w-40"
-          :to="props.png"
+          :to="png"
           target="_blank"
         />
         <UButton
@@ -43,7 +45,7 @@ const props = defineProps<{
           icon="lucide:download"
           label="Download WEBP"
           class="w-40"
-          :to="props.webp"
+          :to="webp"
           target="_blank"
         />
         <UButton
@@ -52,7 +54,7 @@ const props = defineProps<{
           icon="lucide:download"
           label="Download SVG"
           class="w-40"
-          :to="props.svg"
+          :to="svg"
           target="_blank"
         />
       </RLLayoutBox>
