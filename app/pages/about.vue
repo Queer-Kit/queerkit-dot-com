@@ -66,7 +66,7 @@ const text = ref(`testing`)
     <UContainer>
       <UPageSection title="History" description="How we got to today." />
       <ProseCallout variant="creator" :v-model="`Testing`" />
-      <CalloutBlock v-model="text" variant="creator" />
+      <RLCalloutBlock v-model="text" variant="creator" />
       <UPageSection title="Team" description="Queer Kit is developed and maintained by these wonderful people.">
         <UPageColumns>
           <UPageCard
@@ -101,7 +101,7 @@ const text = ref(`testing`)
             </RLLayoutBox>
 
             <template #footer>
-              <TempRLLayoutBox>
+              <RLLayoutBox>
                 direction="horizontal"
                 gap="sm"
                 >
@@ -114,7 +114,7 @@ const text = ref(`testing`)
                     :icon="link.icon"
                   />
                 </template>
-              </TempRLLayoutBox>
+              </RLLayoutBox>
             </template>
           </UPageCard>
         </UPageColumns>

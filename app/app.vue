@@ -123,7 +123,7 @@ const turnstile = ref()
   <UApp :locale="locales[locale]">
     <NuxtRouteAnnouncer />
     <NuxtLoadingIndicator color="primary" />
-    <ConstructionBanner />
+    <QKConstructionBanner />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

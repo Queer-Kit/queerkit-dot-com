@@ -10,49 +10,49 @@ useHead({
       <UPageHeader title="Branding" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
       <UPageBody>
         <UPageSection title="Logo" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-          <H3>Logomark</H3>
-          <H1>Logomark</H1>
-          <H3>Logotype</H3>
+          <RLH3>Logomark</RLH3>
+          <RLH1>Logomark</RLH1>
+          <RLH3>Logotype</RLH3>
         </UPageSection>
-        <UPageSection title="Colors" description="The color palette used across our branding.">
-          <H3>Logo</H3>
+        <UPageSection title="QKColors" description="The color palette used across our branding.">
+          <RLH3>Logo</RLH3>
           <UPageGrid>
-            <ColorSwatch
+            <QKColorSwatch
               hex="#dc1414"
               rgb="rgb(220, 20, 20)"
               hsl="hsl(0, 83%, 47%)"
               cmyk="cmyk(0,91,91,14)"
               oklch="oklch(0.5674 0.2248 28.47)"
             />
-            <ColorSwatch
+            <QKColorSwatch
               hex="#ff740d"
               rgb="rgb(255, 116, 13)"
               hsl="hsl(26, 100%, 53%)"
               cmyk="cmyk(0,55,95,0)"
               oklch="oklch(0.7147 0.1927 47.59)"
             />
-            <ColorSwatch
+            <QKColorSwatch
               hex="#f7d10c"
               rgb="rgb(247, 209, 12)"
               hsl="hsl(50, 94%, 51%)"
               cmyk="cmyk(0,15,95,3)"
               oklch="oklch(0.8674 0.1769 95.55)"
             />
-            <ColorSwatch
+            <QKColorSwatch
               hex="#03991c"
               rgb="rgb(3, 153, 28)"
               hsl="hsl(130, 96%, 31%)"
               cmyk="cmyk(98,0,82,40)"
               oklch="oklch(0.593 0.1928 143.76)"
             />
-            <ColorSwatch
+            <QKColorSwatch
               hex="#2223a1"
               rgb="rgb(34, 35, 161)"
               hsl="hsl(240, 65%, 38%)"
               cmyk="cmyk(79,78,0,37)"
               oklch="oklch(0.3639 0.1934 271.16)"
             />
-            <ColorSwatch
+            <QKColorSwatch
               hex="#7f189b"
               rgb="rgb(127, 24, 155)"
               hsl="hsl(287, 73%, 35%)"
@@ -60,13 +60,13 @@ useHead({
               oklch="oklch(0.449 0.2 317.37)"
             />
           </UPageGrid>
-          <H3>Primary</H3>
-          <H3>Secondary</H3>
-          <H3>Info</H3>
-          <H3>Success</H3>
-          <H3>Warning</H3>
-          <H3>Error</H3>
-          <H3>Neutral</H3>
+          <RLH3>Primary</RLH3>
+          <RLH3>Secondary</RLH3>
+          <RLH3>Info</RLH3>
+          <RLH3>Success</RLH3>
+          <RLH3>Warning</RLH3>
+          <RLH3>Error</RLH3>
+          <RLH3>Neutral</RLH3>
         </UPageSection>
       </UPageBody>
     </UPage>

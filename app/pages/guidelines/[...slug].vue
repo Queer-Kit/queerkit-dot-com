@@ -131,7 +131,7 @@ const pageLinks = ref<PageLink[]>([
           v-if="page.body"
           :value="page"
         />
-        <Feedback :page="page" />
+        <RLFeedback :page="page" />
         <USeparator v-if="surround?.length" />
         <UContentSurround :surround="surround" />
       </UPageBody>
