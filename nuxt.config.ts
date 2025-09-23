@@ -2,7 +2,7 @@ export default defineNuxtConfig({
   extends: [
     [
       `github:Rimelight-Entertainment/rimelight.com`,
-      { install: false }
+      { install: true }
     ]
   ],
   modules: [
@@ -21,6 +21,16 @@ export default defineNuxtConfig({
     `@pinia/nuxt`
   ],
   components: [
+    {
+      path: `~/components/navigation`,
+      pathPrefix: false,
+      prefix: `QK`
+    },
+    {
+      path: `~/components/content`,
+      pathPrefix: false,
+      prefix: `QK`
+    },
     {
       path: `~/components`,
       pathPrefix: false,
@@ -107,6 +117,39 @@ export default defineNuxtConfig({
     config: {
       stylistic: true
     }
+  },
+  fonts: {
+    defaults: {
+      weights: [
+        // Thin
+        100,
+        // ExtraLight
+        200,
+        // Light
+        300,
+        // Regular
+        400,
+        // Medium
+        500,
+        // SemiBold
+        600,
+        // Bold
+        700,
+        // Extra Bold
+        800
+      ],
+      styles: [
+        `normal`,
+        `italic`
+      ]
+    },
+    families: [
+      {
+        name: `JetBrains Mono`,
+        global: true,
+        provider: `local`
+      }
+    ]
   },
   i18n: {
     defaultLocale: `en`,

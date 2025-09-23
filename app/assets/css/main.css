@@ -5,7 +5,7 @@
 @theme static {
   --font-sans: "Noto Sans", sans-serif;
   --font-serif: "Noto Serif", serif;
-  --font-mono: "Noto Sans Mono", monospace;
+  --font-mono: "JetBrains Mono", monospace;
 
   --breakpoint-xs: 320px;
   --breakpoint-sm: 640px;

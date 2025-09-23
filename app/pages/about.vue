@@ -99,7 +99,6 @@ const text = ref(`testing`)
                 />
               </template>
             </RLLayoutBox>
-
             <template #footer>
               <RLLayoutBox>
                 direction="horizontal"

@@ -14,10 +14,10 @@ useHead({
           <RLH1>Logomark</RLH1>
           <RLH3>Logotype</RLH3>
         </UPageSection>
-        <UPageSection title="QKColors" description="The color palette used across our branding.">
+        <UPageSection title="Colors" description="The color palette used across our branding.">
           <RLH3>Logo</RLH3>
           <UPageGrid>
-            <QKColorSwatch
+            <ColorSwatch
               hex="#dc1414"
               rgb="rgb(220, 20, 20)"
               hsl="hsl(0, 83%, 47%)"
@@ -68,7 +68,11 @@ useHead({
           <RLH3>Error</RLH3>
           <RLH3>Neutral</RLH3>
         </UPageSection>
-      </UPageBody>
+        <UPageSection title="Fonts" description="The fonts used across our branding.">
+          <H3>Monospace</H3>
+          <p>Any monospaced sections such as code blocks are rendered using the <a href="https://jetbrains.com/lp/mono" class="font-mono">JetBrains Mono</a> font.</p>
+        </UPageSection>
+      </UPagebody>
     </UPage>
   </UContainer>
 </template>
