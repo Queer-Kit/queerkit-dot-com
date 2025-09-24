@@ -55,7 +55,7 @@ const columns: FooterColumn[] = [
             label="Subscribe to the Queer Kit Newsletter"
             description="Stay updated on new blog posts and company updates. Unsubscribe at any time."
           />
-          <UFooterColumns :columns="columns" />
+          <UFooterColumns :columns="columns" class="flex-1" />
         </QKLayoutBox>
       </UContainer>
     </template>
