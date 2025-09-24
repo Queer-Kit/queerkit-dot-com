@@ -1,10 +1,4 @@
 export default defineNuxtConfig({
-  extends: [
-    [
-      `github:Rimelight-Entertainment/rimelight.com`,
-      { install: true }
-    ]
-  ],
   modules: [
     `@nuxt/ui`,
     `@nuxtjs/i18n`,
