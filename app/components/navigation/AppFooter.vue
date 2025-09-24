@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import {
-  ar, en, es, fr, ja, ko, pt, ro, zh_cn
-} from '@nuxt/ui/locale'
-import type {
-  FooterColumn
-} from "@nuxt/ui"
+import { ar, en, es, fr, ja, ko, pt, ro, zh_cn } from "@nuxt/ui/locale"
+import type { FooterColumn } from "@nuxt/ui"
 
-const {
-  locale, setLocale
-} = useI18n()
+const { locale, setLocale } = useI18n()
 
 const columns: FooterColumn[] = [
   {
@@ -44,36 +38,26 @@ const columns: FooterColumn[] = [
   <UFooter>
     <template #top>
       <UContainer>
-        <RLLayoutBox
-          direction="horizontal"
-          gap="lg"
-        >
+        <QKLayoutBox direction="horizontal" gap="lg">
           <QKNewsletterSignup />
           <UFooterColumns :columns="columns" />
-        </RLLayoutBox>
+        </QKLayoutBox>
       </UContainer>
     </template>
     <template #left>
-      <RLLayoutBox direction="vertical" gap="sm">
+      <QKLayoutBox direction="vertical" gap="sm">
         <NuxtLink to="/">
           <UIcon name="first-party:logotype-color" class="h-48 w-full" />
         </NuxtLink>
         <p class="text-muted text-sm">
           © {{ new Date().getFullYear() }} Queer Kit
         </p>
-      </RLLayoutBox>
+      </QKLayoutBox>
     </template>
     <template #right>
       <UContainer>
-        <RLLayoutBox
-          direction="vertical"
-          gap="md"
-          align-items="end"
-        >
-          <RLLayoutBox
-            direction="horizontal"
-            gap="sm"
-          >
+        <QKLayoutBox direction="vertical" gap="md" align-items="end">
+          <QKLayoutBox direction="horizontal" gap="sm">
             <UButton
               size="xl"
               variant="ghost"
@@ -95,11 +79,8 @@ const columns: FooterColumn[] = [
               icon="mdi:spotify"
               to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222"
             />
-          </RLLayoutBox>
-          <RLLayoutBox
-            direction="horizontal"
-            gap="md"
-          >
+          </QKLayoutBox>
+          <QKLayoutBox direction="horizontal" gap="md">
             <ULocaleSelect
               v-model="locale"
               :locales="[ar, en, es, fr, ja, ko, pt, ro, zh_cn]"
@@ -107,13 +88,11 @@ const columns: FooterColumn[] = [
               class="w-48"
               @update:model-value="setLocale($event)"
             />
-          </RLLayoutBox>
-        </RLLayoutBox>
+          </QKLayoutBox>
+        </QKLayoutBox>
       </UContainer>
     </template>
   </UFooter>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

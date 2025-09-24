@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { PageLink } from '@nuxt/ui'
+import type { PageLink } from "@nuxt/ui"
 
 const route = useRoute()
 const { share } = useShare()
@@ -9,19 +9,17 @@ const toast = useToast()
 const blogDrawerOpen = ref(false)
 const tocDrawerOpen = ref(false)
 
-const { data: blogNavigation } = await useAsyncData(`navigation`, () => queryCollectionNavigation(`blog`).order(`datePosted`, `DESC`))
+const { data: blogNavigation } = await useAsyncData(`navigation`, () =>
+  queryCollectionNavigation(`blog`).order(`datePosted`, `DESC`)
+)
 
-const [
-  { data: page },
-  { data: surround }
-] = await Promise.all([
-  useAsyncData(route.path, () => queryCollection(`blog`).path(route.path).
-    first()),
-  useAsyncData(`${ route.path }-surround`, () => {
+const [{ data: page }, { data: surround }] = await Promise.all([
+  useAsyncData(route.path, () =>
+    queryCollection(`blog`).path(route.path).first()
+  ),
+  useAsyncData(`${route.path}-surround`, () => {
     return queryCollectionItemSurroundings(`blog`, route.path, {
-      fields: [
-        `description`
-      ]
+      fields: [`description`]
     }).order(`datePosted`, `DESC`)
   })
 ])
@@ -39,15 +37,19 @@ watch(route, () => {
   tocDrawerOpen.value = false
 })
 
-watch(page, (page) => {
-  if (!page) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: `Page not found`,
-      fatal: true
-    })
-  }
-}, { immediate: true })
+watch(
+  page,
+  (page) => {
+    if (!page) {
+      throw createError({
+        statusCode: 404,
+        statusMessage: `Page not found`,
+        fatal: true
+      })
+    }
+  },
+  { immediate: true }
+)
 
 const title = page.value.seo?.title || page.value.title
 const description = page.value.seo?.description || page.value.description
@@ -57,19 +59,19 @@ useSeoMeta({
   title,
   description,
   ogDescription: description,
-  ogTitle: `${ title } - Queer Kit Blog`
+  ogTitle: `${title} - Queer Kit Blog`
 })
 
 const fixedLinks = [
   {
     label: `Share Post`,
     icon: `lucide:send`,
-    onClick: async() => {
+    onClick: async () => {
       try {
         await share({
           title,
           text: description,
-          url: `${ location.href }`
+          url: `${location.href}`
         })
       } catch {
         toast.add({
@@ -83,9 +85,9 @@ const fixedLinks = [
   {
     label: `Copy Link`,
     icon: `lucide:link`,
-    onClick: async() => {
+    onClick: async () => {
       try {
-        await copy(`${ location.href }`)
+        await copy(`${location.href}`)
         toast.add({
           title: `Page URL copied to clipboard!`,
           color: `success`
@@ -102,12 +104,8 @@ const fixedLinks = [
 ]
 
 const combinedLinks = computed(() => {
-  const dynamicLinks = page.value?.links || [
-  ]
-  return [
-    ...dynamicLinks,
-    ...fixedLinks
-  ]
+  const dynamicLinks = page.value?.links || []
+  return [...dynamicLinks, ...fixedLinks]
 })
 
 const pageLinks = ref<PageLink[]>([
@@ -138,33 +136,26 @@ const pageLinks = ref<PageLink[]>([
         :links="combinedLinks"
       >
         <template #headline>
-          <QKLayoutBox
-            direction="vertical"
-            gap="lg"
-            align-items="start"
-          >
-            <UBreadcrumb :items="[{ label: 'Blog', to: '/blog' }, { label: page.title }]" class="max-w-full" />
-            <QKLayoutBox
-              direction="horizontal"
-              gap="sm"
-            >
+          <QKLayoutBox direction="vertical" gap="lg" align-items="start">
+            <UBreadcrumb
+              :items="[{ label: 'Blog', to: '/blog' }, { label: page.title }]"
+              class="max-w-full"
+            />
+            <QKLayoutBox direction="horizontal" gap="sm">
               <span>
                 {{ page.category }}
               </span>
-              <span class="text-muted">&middot;&nbsp;&nbsp;<NuxtTime
-                :datetime="page.datePosted"
-                year="numeric"
-                month="numeric"
-                day="numeric"
+              <span class="text-muted"
+                >&middot;&nbsp;&nbsp;<NuxtTime
+                  :datetime="page.datePosted"
+                  year="numeric"
+                  month="numeric"
+                  day="numeric"
               /></span>
             </QKLayoutBox>
           </QKLayoutBox>
         </template>
-        <QKLayoutBox
-          direction="horizontal"
-          gap="md"
-          class="pt-6 flex-wrap"
-        >
+        <QKLayoutBox direction="horizontal" gap="md" class="pt-6 flex-wrap">
           <UUser
             v-for="(author, index) in page.authors"
             :key="index"
@@ -202,10 +193,7 @@ const pageLinks = ref<PageLink[]>([
         >
           <template #bottom>
             <UPageLinks title="Links" :links="pageLinks" />
-            <QKLayoutBox
-              direction="vertical"
-              gap="xs"
-            >
+            <QKLayoutBox direction="vertical" gap="xs">
               <span class="text-sm text-muted">Last Updated:</span>
               <NuxtTime
                 :datetime="page.datePosted"
@@ -221,7 +209,9 @@ const pageLinks = ref<PageLink[]>([
             </QKLayoutBox>
           </template>
         </UContentToc>
-        <div class="order-first lg:order-last sticky top-(--ui-header-height) z-10 bg-default lg:bg-[initial] -mx-4 p-6 border-b border-default flex justify-between">
+        <div
+          class="order-first lg:order-last sticky top-(--ui-header-height) z-10 bg-default lg:bg-[initial] -mx-4 p-6 border-b border-default flex justify-between"
+        >
           <UDrawer
             v-model:open="blogDrawerOpen"
             direction="left"
@@ -229,7 +219,7 @@ const pageLinks = ref<PageLink[]>([
             side="left"
             class="lg:hidden"
             :ui="{
-              content: 'w-full max-w-2/3 rounded-none',
+              content: 'w-full max-w-2/3 rounded-none'
             }"
           >
             <UButton
@@ -258,7 +248,7 @@ const pageLinks = ref<PageLink[]>([
             side="top"
             class="lg:hidden"
             :ui="{
-              content: 'w-full max-w-2/3 rounded-none',
+              content: 'w-full max-w-2/3 rounded-none'
             }"
           >
             <UButton
@@ -280,13 +270,10 @@ const pageLinks = ref<PageLink[]>([
                   root: '!mx-0 !px-1 top-0 overflow-visible',
                   container: '!pt-0 border-b-0',
                   trailingIcon: 'hidden',
-                  bottom: 'flex flex-col',
+                  bottom: 'flex flex-col'
                 }"
               />
-              <QKLayoutBox
-                direction="vertical"
-                gap="xs"
-              >
+              <QKLayoutBox direction="vertical" gap="xs">
                 <span class="text-sm text-muted">Last Updated:</span>
                 <NuxtTime
                   :datetime="page.datePosted"

@@ -1,6 +1,4 @@
-import {
-  navigateTo
-} from '#app'
+import { navigateTo } from "#app"
 
 export default defineNuxtRouteMiddleware((to) => {
   const isUnlocked = useCookie<boolean>(`is-unlocked`)

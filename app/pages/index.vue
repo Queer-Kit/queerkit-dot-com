@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type {
-  AccordionItem
-} from '@nuxt/ui'
+import type { AccordionItem } from "@nuxt/ui"
 
 useHead({
   title: `Home`
@@ -48,9 +46,9 @@ const projectsLinks = ref([
   }
 ])
 
-const {
-  data: posts
-} = await useAsyncData(`posts`, () => queryCollection(`blog`).all())
+const { data: posts } = await useAsyncData(`posts`, () =>
+  queryCollection(`blog`).all()
+)
 
 const frequentlyAskedQuestions = ref<AccordionItem[]>([
   {
@@ -85,7 +83,7 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
       :links="projectsLinks"
       orientation="horizontal"
     >
-      <RLPlaceholder class="h-full" />
+      <QKPlaceholder class="h-full" />
     </UPageSection>
     <UMarquee>
       <UIcon name="flags:flag_queer" class="size-24 shrink-0" />
@@ -101,7 +99,10 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
       <UIcon name="flags:flag_intersex" class="size-24 shrink-0" />
       <UIcon name="flags:flag_nonmonogamous" class="size-24 shrink-0" />
     </UMarquee>
-    <UPageSection title="Latest Blog Posts" description="View articles by our community members.">
+    <UPageSection
+      title="Latest Blog Posts"
+      description="View articles by our community members."
+    >
       <UBlogPosts>
         <UBlogPost
           v-for="(post, index) in posts"
@@ -118,12 +119,14 @@ const frequentlyAskedQuestions = ref<AccordionItem[]>([
         />
       </UBlogPosts>
     </UPageSection>
-    <UPageSection title="Frequently Asked Questions" description="Lorem ipsum dolor sit amet." headline="Lorem">
+    <UPageSection
+      title="Frequently Asked Questions"
+      description="Lorem ipsum dolor sit amet."
+      headline="Lorem"
+    >
       <UAccordion :items="frequentlyAskedQuestions" />
     </UPageSection>
   </UPage>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,13 +1,7 @@
 <script lang="ts" setup>
-import {
-  mapContentNavigation
-} from '@nuxt/ui/utils/content'
-import {
-  findPageBreadcrumb
-} from '@nuxt/content/utils'
-import type {
-  PageAnchor, PageLink
-} from '@nuxt/ui'
+import { mapContentNavigation } from "@nuxt/ui/utils/content"
+import { findPageBreadcrumb } from "@nuxt/content/utils"
+import type { PageAnchor, PageLink } from "@nuxt/ui"
 
 definePageMeta({
   layout: `guidelines`
@@ -15,10 +9,9 @@ definePageMeta({
 
 const route = useRoute()
 
-const {
-  data: page
-} = await useAsyncData(route.path, () => queryCollection(`guidelines`).path(route.path).
-  first())
+const { data: page } = await useAsyncData(route.path, () =>
+  queryCollection(`guidelines`).path(route.path).first()
+)
 if (!page.value) {
   throw createError({
     statusCode: 404,
@@ -27,25 +20,23 @@ if (!page.value) {
   })
 }
 
-const {
-  data: surround
-} = await useAsyncData(`${ route.path }-surround`, () => {
+const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
   return queryCollectionItemSurroundings(`guidelines`, route.path, {
-    fields: [
-      `description`
-    ]
+    fields: [`description`]
   })
 })
 
-const {
-  data: navigation
-} = await useAsyncData(`navigation`, () => queryCollectionNavigation(`guidelines`))
+const { data: navigation } = await useAsyncData(`navigation`, () =>
+  queryCollectionNavigation(`guidelines`)
+)
 
-const breadcrumb = computed(() => mapContentNavigation(findPageBreadcrumb(navigation?.value, page.value?.path, {
-  indexAsChild: true
-})).map(({
-  icon, ...link
-}) => link))
+const breadcrumb = computed(() =>
+  mapContentNavigation(
+    findPageBreadcrumb(navigation?.value, page.value?.path, {
+      indexAsChild: true
+    })
+  ).map(({ icon, ...link }) => link)
+)
 
 const lastModified = useDateFormat(page.value.lastModified, `DD/MM/YYYY`)
 
@@ -101,14 +92,11 @@ const pageLinks = ref<PageLink[]>([
           <template #top>
             <UPageAnchors :links="pageAnchors" class="w-full" />
           </template>
-          <RLLayoutBox
-            direction="vertical"
-            gap="md"
-          >
+          <QKLayoutBox direction="vertical" gap="md">
             <USeparator />
             <UContentSearchButton :collapsed="false" label="Search" />
             <UContentNavigation :navigation="navigation" highlight />
-          </RLLayoutBox>
+          </QKLayoutBox>
         </UPageAside>
       </template>
       <UBreadcrumb :items="breadcrumb" class="mt-8" />
@@ -127,32 +115,33 @@ const pageLinks = ref<PageLink[]>([
             :label="tag"
           />
         </template>
-        <ContentRenderer
-          v-if="page.body"
-          :value="page"
-        />
-        <RLFeedback :page="page" />
+        <ContentRenderer v-if="page.body" :value="page" />
+        <QKFeedback :page="page" />
         <USeparator v-if="surround?.length" />
         <UContentSurround :surround="surround" />
       </UPageBody>
       <template v-if="page?.body?.toc?.links?.length" #right>
-        <RLLayoutBox
-          direction="vertical"
-          gap="md"
-        >
-          <UContentToc title="Table of Contents" :links="page.body.toc.links" highlight>
+        <QKLayoutBox direction="vertical" gap="md">
+          <UContentToc
+            title="Table of Contents"
+            :links="page.body.toc.links"
+            highlight
+          >
             <template #bottom>
               <USeparator />
               <UPageLinks title="Links" :links="pageLinks" />
-              <span class="text-muted text-sm">Last Modified: <time :datetime="page.lastModified">{{ lastModified }}</time></span>
+              <span class="text-muted text-sm"
+                >Last Modified:
+                <time :datetime="page.lastModified">{{
+                  lastModified
+                }}</time></span
+              >
             </template>
           </UContentToc>
-        </RLLayoutBox>
+        </QKLayoutBox>
       </template>
     </UPage>
   </UContainer>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

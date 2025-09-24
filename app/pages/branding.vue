@@ -7,15 +7,24 @@ useHead({
 <template>
   <UContainer>
     <UPage>
-      <UPageHeader title="Branding" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
+      <UPageHeader
+        title="Branding"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      />
       <UPageBody>
-        <UPageSection title="Logo" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
-          <RLH3>Logomark</RLH3>
-          <RLH1>Logomark</RLH1>
-          <RLH3>Logotype</RLH3>
+        <UPageSection
+          title="Logo"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        >
+          <QKH3>Logomark</QKH3>
+          <QKH1>Logomark</QKH1>
+          <QKH3>Logotype</QKH3>
         </UPageSection>
-        <UPageSection title="Colors" description="The color palette used across our branding.">
-          <RLH3>Logo</RLH3>
+        <UPageSection
+          title="Colors"
+          description="The color palette used across our branding."
+        >
+          <QKH3>Logo</QKH3>
           <UPageGrid>
             <ColorSwatch
               hex="#dc1414"
@@ -60,23 +69,30 @@ useHead({
               oklch="oklch(0.449 0.2 317.37)"
             />
           </UPageGrid>
-          <RLH3>Primary</RLH3>
-          <RLH3>Secondary</RLH3>
-          <RLH3>Info</RLH3>
-          <RLH3>Success</RLH3>
-          <RLH3>Warning</RLH3>
-          <RLH3>Error</RLH3>
-          <RLH3>Neutral</RLH3>
+          <QKH3>Primary</QKH3>
+          <QKH3>Secondary</QKH3>
+          <QKH3>Info</QKH3>
+          <QKH3>Success</QKH3>
+          <QKH3>Warning</QKH3>
+          <QKH3>Error</QKH3>
+          <QKH3>Neutral</QKH3>
         </UPageSection>
-        <UPageSection title="Fonts" description="The fonts used across our branding.">
-          <H3>Monospace</H3>
-          <p>Any monospaced sections such as code blocks are rendered using the <a href="https://jetbrains.com/lp/mono" class="font-mono">JetBrains Mono</a> font.</p>
+        <UPageSection
+          title="Fonts"
+          description="The fonts used across our branding."
+        >
+          <QKH3>Monospace</QKH3>
+          <p>
+            Any monospaced sections such as code blocks are rendered using the
+            <a href="https://jetbrains.com/lp/mono" class="font-mono"
+              >JetBrains Mono</a
+            >
+            font.
+          </p>
         </UPageSection>
-      </UPagebody>
+      </UPageBody>
     </UPage>
   </UContainer>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

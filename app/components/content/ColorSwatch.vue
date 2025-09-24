@@ -2,9 +2,7 @@
 const { copy } = useClipboard()
 const toast = useToast()
 
-const {
-
-} = defineProps<{
+const {} = defineProps<{
   hex: string
   rgb: string
   hsl: string
@@ -12,9 +10,9 @@ const {
   oklch: string
 }>()
 
-const copyToClipboard = async(text: string) => {
+const copyToClipboard = async (text: string) => {
   try {
-    await copy(`${ text }`)
+    await copy(`${text}`)
     toast.add({
       title: `Color copied to clipboard!`,
       description: text,
@@ -32,20 +30,13 @@ const copyToClipboard = async(text: string) => {
 
 <template>
   <UCard>
-    <QKLayoutBox
-      direction="horizontal"
-      gap="sm"
-    >
+    <QKLayoutBox direction="horizontal" gap="sm">
       <div
         class="aspect-square"
         :style="{ backgroundColor: hex, width: '100%' }"
       />
 
-      <QKLayoutBox
-        direction="vertical"
-        gap="sm"
-        justify-content="center"
-      >
+      <QKLayoutBox direction="vertical" gap="sm" justify-content="center">
         <UButton
           variant="outline"
           size="sm"

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const {
-
-} = defineProps<{
+const {} = defineProps<{
   jpg: string
   png: string
   webp: string
@@ -11,16 +9,9 @@ const {
 
 <template>
   <UCard>
-    <RLLayoutBox
-      direction="horizontal"
-      gap="sm"
-    >
+    <QKLayoutBox direction="horizontal" gap="sm">
       <NuxtImg :src="webp" class="h-fit w-auto" />
-      <RLLayoutBox
-        direction="vertical"
-        gap="sm"
-        justify-content="center"
-      >
+      <QKLayoutBox direction="vertical" gap="sm" justify-content="center">
         <UButton
           variant="outline"
           size="sm"
@@ -57,7 +48,7 @@ const {
           :to="svg"
           target="_blank"
         />
-      </RLLayoutBox>
-    </RLLayoutBox>
+      </QKLayoutBox>
+    </QKLayoutBox>
   </UCard>
 </template>

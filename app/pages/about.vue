@@ -8,10 +8,7 @@ const team = ref([
     src: `https://cdn.queerkit.com/images/team/bruna-corso.webp`,
     icon: `flags:flag_bisexual`,
     name: `Bruna Corso`,
-    badges: [
-      `Co-founder`,
-      `Designer`
-    ],
+    badges: [`Co-founder`, `Designer`],
     description: `Lorem ipsum dolor sit amet.`,
     links: [
       {
@@ -24,10 +21,7 @@ const team = ref([
     src: `https://cdn.queerkit.com/images/team/daniel-marchi.webp`,
     icon: `flags:flag_gay`,
     name: `Daniel Marchi`,
-    badges: [
-      `Co-founder`,
-      `Developer`
-    ],
+    badges: [`Co-founder`, `Developer`],
     description: `Lorem ipsum dolor sit amet.`,
     links: [
       {
@@ -44,10 +38,7 @@ const team = ref([
     src: `https://cdn.queerkit.com/images/team/gustavo-cardoso.webp`,
     icon: `flags:flag_gay`,
     name: `Gustavo Cardoso`,
-    badges: [
-      `Co-founder`,
-      `Designer`
-    ],
+    badges: [`Co-founder`, `Designer`],
     description: `Lorem ipsum dolor sit amet.`,
     links: [
       {
@@ -66,8 +57,11 @@ const text = ref(`testing`)
     <UContainer>
       <UPageSection title="History" description="How we got to today." />
       <ProseCallout variant="creator" :v-model="`Testing`" />
-      <RLCalloutBlock v-model="text" variant="creator" />
-      <UPageSection title="Team" description="Queer Kit is developed and maintained by these wonderful people.">
+      <QKCalloutBlock v-model="text" variant="creator" />
+      <UPageSection
+        title="Team"
+        description="Queer Kit is developed and maintained by these wonderful people."
+      >
         <UPageColumns>
           <UPageCard
             v-for="(member, index) in team"
@@ -84,10 +78,7 @@ const text = ref(`testing`)
               :alt="member.name"
               class="w-full"
             />
-            <RLLayoutBox
-              direction="horizontal"
-              gap="sm"
-            >
+            <QKLayoutBox direction="horizontal" gap="sm">
               <template v-if="member.badges">
                 <UBadge
                   v-for="badge in member.badges"
@@ -98,12 +89,10 @@ const text = ref(`testing`)
                   class="w-fit"
                 />
               </template>
-            </RLLayoutBox>
+            </QKLayoutBox>
             <template #footer>
-              <RLLayoutBox>
-                direction="horizontal"
-                gap="sm"
-                >
+              <QKLayoutBox>
+                direction="horizontal" gap="sm" >
                 <template v-if="member.links">
                   <UButton
                     v-for="link in member.links"
@@ -113,7 +102,7 @@ const text = ref(`testing`)
                     :icon="link.icon"
                   />
                 </template>
-              </RLLayoutBox>
+              </QKLayoutBox>
             </template>
           </UPageCard>
         </UPageColumns>
@@ -122,6 +111,4 @@ const text = ref(`testing`)
   </UPage>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,29 +1,23 @@
 <script setup lang="ts">
-import * as z from 'zod'
-import type {
-  FormSubmitEvent, SelectItem
-} from '@nuxt/ui'
+import * as z from "zod"
+import type { FormSubmitEvent, SelectItem } from "@nuxt/ui"
 
 useHead({
   title: `Certification`
 })
 
-const pronouns = ref([
-  `He / Him`,
-  `She / Her`,
-  `They / Them`
-])
+const pronouns = ref([`He / Him`, `She / Her`, `They / Them`])
 
 const schema = z.object({
-  first_name: z.string().min(2, `First name must be between 2 and 24 characters long.`).
-    max(24, `First name must be between 2 and 24 characters long.`),
-  last_name: z.string().min(2, `Last name must be between 2 and 24 characters long.`).
-    max(24, `Last name must be between 2 and 24 characters long.`),
-  pronouns: z.enum([
-    `He / Him`,
-    `She / Her`,
-    `They / Them`
-  ]),
+  first_name: z
+    .string()
+    .min(2, `First name must be between 2 and 24 characters long.`)
+    .max(24, `First name must be between 2 and 24 characters long.`),
+  last_name: z
+    .string()
+    .min(2, `Last name must be between 2 and 24 characters long.`)
+    .max(24, `Last name must be between 2 and 24 characters long.`),
+  pronouns: z.enum([`He / Him`, `She / Her`, `They / Them`]),
   certification: z.string(),
   terms: z.boolean().refine((val) => val, {
     message: `You must agree to the terms of service.`
@@ -93,18 +87,18 @@ function generateCertificateId(): string {
 
   // Get the month (0-11) and day (1-31) and pad them
   const month = (now.getMonth() + 1).toString().padStart(2, `0`)
-  const day = now.getDate().toString().
-    padStart(2, `0`)
+  const day = now.getDate().toString().padStart(2, `0`)
 
   // Combine them into a short date code
-  const datePart = `${ month }${ day }`
+  const datePart = `${month}${day}`
 
   // Generate a random 4-digit number (from 0000 to 9999)
-  const randomPart = Math.floor(Math.random() * 10000).toString().
-    padStart(4, `0`)
+  const randomPart = Math.floor(Math.random() * 10000)
+    .toString()
+    .padStart(4, `0`)
 
   // Combine the date code and the random part with a hyphen
-  return `${ datePart }-${ randomPart }`
+  return `${datePart}-${randomPart}`
 }
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
@@ -115,7 +109,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 <template>
   <UPage>
     <UContainer>
-      <RLLayoutBox
+      <QKLayoutBox
         direction="vertical"
         padding="md"
         gap="md"
@@ -129,10 +123,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
             :state="state"
             @submit="onSubmit"
           >
-            <RLLayoutBox
-              direction="vertical"
-              gap="sm"
-            >
+            <QKLayoutBox direction="vertical" gap="sm">
               <UFileUpload
                 v-model="value"
                 accept="image/*"
@@ -140,26 +131,42 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 description="PNG, JPG or WEBP (max. 2MB)"
                 class="w-96 min-h-48"
               />
-              <RLLayoutBox
-                direction="horizontal"
-                gap="md"
-              >
+              <QKLayoutBox direction="horizontal" gap="md">
                 <UFormField label="First Name" description="" required>
-                  <UInput v-model="state.first_name" placeholder="Enter your first name" />
+                  <UInput
+                    v-model="state.first_name"
+                    placeholder="Enter your first name"
+                  />
                 </UFormField>
                 <UFormField label="Last Name" description="" hint="Optional">
-                  <UInput v-model="state.last_name" placeholder="Enter your last name" />
+                  <UInput
+                    v-model="state.last_name"
+                    placeholder="Enter your last name"
+                  />
                 </UFormField>
-              </RLLayoutBox>
+              </QKLayoutBox>
               <UFormField label="Pronouns" description="" required>
-                <USelect v-model="state.pronouns" :items="pronouns" class="w-48" />
+                <USelect
+                  v-model="state.pronouns"
+                  :items="pronouns"
+                  class="w-48"
+                />
               </UFormField>
               <UFormField label="Certification" description="" required>
-                <USelect v-model="state.certification" :items="items" class="w-48" />
+                <USelect
+                  v-model="state.certification"
+                  :items="items"
+                  class="w-48"
+                />
               </UFormField>
               <UCheckbox v-model="state.terms" name="terms" required>
                 <template #label>
-                  I have read and agree to the <ULink to="/documents/terms-of-service" class="text-primary font-medium">Terms of Service</ULink>.
+                  I have read and agree to the
+                  <ULink
+                    to="/documents/terms-of-service"
+                    class="text-primary font-medium"
+                    >Terms of Service</ULink
+                  >.
                 </template>
               </UCheckbox>
               <UButton
@@ -168,24 +175,20 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 color="primary"
                 block
               />
-            </RLLayoutBox>
+            </QKLayoutBox>
           </UForm>
         </UPageCard>
-        <RLLayoutBox
-          direction="vertical"
-        >
+        <QKLayoutBox direction="vertical">
           <span>Name: {{ state.first_name }} {{ state.last_name }}</span>
           <span>Pronouns: {{ state.pronouns }}</span>
           <span>Certification: {{ state.certification }}</span>
           <span>Emission Date: {{ emissionDate }}</span>
           <span>Expiration Date: {{ expirationDate }}</span>
           <span>Document ID: QK-{{ certificateId }}</span>
-        </RLLayoutBox>
-      </RLLayoutBox>
+        </QKLayoutBox>
+      </QKLayoutBox>
     </UContainer>
   </UPage>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type {
-  NavigationMenuItem
-} from '@nuxt/ui'
+import type { NavigationMenuItem } from "@nuxt/ui"
 
 const route = useRoute()
 
@@ -57,6 +55,4 @@ const items = computed<NavigationMenuItem[]>(() => [
   </UHeader>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
