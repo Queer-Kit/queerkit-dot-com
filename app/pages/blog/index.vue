@@ -1,35 +1,84 @@
 <script setup lang="ts">
 const route = useRoute()
 
+const { data: posts } = await useAsyncData(route.path, () => queryCollection(`blog`).order(`datePosted`, `DESC`).
+  all())
+
+const formatDate = (date: string) => {
+  return useDateFormat(date, `DD/MM/YYYY`).value
+}
+
 const {
-  data: posts
-} = await useAsyncData(route.path, () => queryCollection(`blog`).all())
+  title = `Blog`,
+  description = `Read the latest articles by our community members.`
+} = defineProps<{
+  title?: string
+  description?: string
+}>()
+
+useHead({
+  link: [
+    {
+      rel: `alternate`,
+      type: `application/atom+xml`,
+      title: `Queer Kit Blog RSS`,
+      href: `https://queerkit.com/blog/rss.xml`
+    }
+  ]
+})
+
+const links = [
+  {
+    icon: `lucide:rss`,
+    label: `RSS`,
+    to: `/blog/rss.xml`,
+    target: `_blank`
+  }
+]
 </script>
 
 <template>
   <UContainer>
-    <UPage>
-      <UPageHeader
-        title="Blog"
-        description="Read the latest articles by our community members."
-      />
-      <UPageBody>
-        <UBlogPosts>
-          <UBlogPost
-            v-for="(post, index) in posts"
-            :key="index"
-            :to="post.path"
-            :title="post.title"
-            :description="post.description"
-            :image="post.image.src"
-            :date="post.datePosted"
-            :authors="post.authors"
-            :orientation="index === 0 ? 'horizontal' : 'vertical'"
-            :class="[index === 0 && 'col-span-full']"
-            variant="subtle"
+    <UPageHeader
+      :title="title"
+      :description="description"
+      :links="links"
+    >
+      <template #description>
+        <QKLayoutBox
+          direction="vertical"
+          gap="md"
+        >
+          {{ description }}
+          <QKNewsletterSignup
+            label="Subscribe to the Queer Kit Newsletter"
+            description="Stay updated on new blog posts and company updates. Unsubscribe at any time."
           />
-        </UBlogPosts>
-      </UPageBody>
-    </UPage>
+        </QKLayoutBox>
+      </template>
+    </UPageHeader>
+    <UPageBody>
+      <UBlogPosts class=" md:grid-cols-2 lg:grid-cols-3">
+        <UBlogPost
+          v-for="(post, index) in posts"
+          :key="post.path"
+          :to="post.path"
+          :image="{
+            src: post.image?.src,
+            alt: post.image?.alt,
+            width: (index === 0 ? 672 : 437),
+            height: (index === 0 ? 378 : 246),
+          }"
+          :badge="{ label: post.category, color: 'primary', variant: 'subtle' }"
+          :date="formatDate(post.datePosted)"
+          :title="post.title"
+          :description="post.description"
+          :authors="post.authors?.map(author => ({ ...author, avatar: { ...author.avatar, alt: `${author.name} Avatar` } }))"
+          :orientation="index === 0 ? 'horizontal' : 'vertical'"
+          :class="[index === 0 && 'col-span-full']"
+          variant="subtle"
+        />
+      </UBlogPosts>
+    </UPageBody>
   </UContainer>
 </template>

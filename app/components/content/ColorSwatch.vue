@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { copy } = useClipboard()
+const toast = useToast()
+
 const {
 
 } = defineProps<{
@@ -9,19 +12,17 @@ const {
   oklch: string
 }>()
 
-const toast = useToast()
-
 const copyToClipboard = async(text: string) => {
   try {
-    await navigator.clipboard.writeText(text)
+    await copy(`${ text }`)
     toast.add({
       title: `Color copied to clipboard!`,
       description: text,
       color: `success`
     })
-  } catch(err) {
+  } catch {
     toast.add({
-      title: `Failed to copy color to clipboard!`,
+      title: `Failed to copy color to clipboard.`,
       description: `An unexpected error occurred. Please try again.`,
       color: `error`
     })
@@ -31,7 +32,7 @@ const copyToClipboard = async(text: string) => {
 
 <template>
   <UCard>
-    <RLLayoutBox
+    <QKLayoutBox
       direction="horizontal"
       gap="sm"
     >
@@ -40,7 +41,7 @@ const copyToClipboard = async(text: string) => {
         :style="{ backgroundColor: hex, width: '100%' }"
       />
 
-      <RLLayoutBox
+      <QKLayoutBox
         direction="vertical"
         gap="sm"
         justify-content="center"
@@ -85,7 +86,7 @@ const copyToClipboard = async(text: string) => {
           class="w-32"
           @click="copyToClipboard(oklch)"
         />
-      </RLLayoutBox>
-    </RLLayoutBox>
+      </QKLayoutBox>
+    </QKLayoutBox>
   </UCard>
 </template>

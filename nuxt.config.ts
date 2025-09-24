@@ -23,16 +23,6 @@ export default defineNuxtConfig({
   ],
   components: [
     {
-      path: `~/components/navigation`,
-      pathPrefix: false,
-      prefix: `QK`
-    },
-    {
-      path: `~/components/content`,
-      pathPrefix: false,
-      prefix: `QK`
-    },
-    {
       path: `~/components`,
       pathPrefix: false,
       prefix: `QK`

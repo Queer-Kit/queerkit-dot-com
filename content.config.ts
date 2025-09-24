@@ -53,7 +53,8 @@ export default defineContentConfig({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
         type: z.enum([
-          `Policy`
+          `Policy`,
+          `Document`
         ]),
         tags: z.array(z.string()),
         lastModified: z.date(),
@@ -66,7 +67,7 @@ export default defineContentConfig({
       schema: z.object({
         title: z.string().nonempty(),
         description: z.string().nonempty(),
-        type: z.enum([
+        category: z.enum([
           `Blog Post, Personal Story`
         ]),
         image: Image.optional(),

@@ -1,42 +1,113 @@
 <script setup lang="ts">
-import type {
-  PageLink
-} from "@nuxt/ui"
+import type { PageLink } from '@nuxt/ui'
 
 const route = useRoute()
+const { share } = useShare()
+const { copy } = useClipboard()
+const toast = useToast()
 
-const {
-  data: blog
-} = await useAsyncData(route.path, () => queryCollection(`blog`).path(route.path).
-  first())
-if (!blog.value) {
+const blogDrawerOpen = ref(false)
+const tocDrawerOpen = ref(false)
+
+const { data: blogNavigation } = await useAsyncData(`navigation`, () => queryCollectionNavigation(`blog`).order(`datePosted`, `DESC`))
+
+const [
+  { data: page },
+  { data: surround }
+] = await Promise.all([
+  useAsyncData(route.path, () => queryCollection(`blog`).path(route.path).
+    first()),
+  useAsyncData(`${ route.path }-surround`, () => {
+    return queryCollectionItemSurroundings(`blog`, route.path, {
+      fields: [
+        `description`
+      ]
+    }).order(`datePosted`, `DESC`)
+  })
+])
+
+if (!page.value) {
   throw createError({
     statusCode: 404,
-    statusMessage: `blog not found`,
+    statusMessage: `Page not found.`,
     fatal: true
   })
 }
 
-const {
-  data: surround
-} = await useAsyncData(`${ route.path }-surround`, () => {
-  return queryCollectionItemSurroundings(`blog`, route.path, {
-    fields: [
-      `description`
-    ]
-  })
+watch(route, () => {
+  blogDrawerOpen.value = false
+  tocDrawerOpen.value = false
 })
 
-const title = blog.value.seo?.title || blog.value.title
-const description = blog.value.seo?.description || blog.value.description
+watch(page, (page) => {
+  if (!page) {
+    throw createError({
+      statusCode: 404,
+      statusMessage: `Page not found`,
+      fatal: true
+    })
+  }
+}, { immediate: true })
 
-const datePosted = useDateFormat(blog.value.datePosted, `DD/MM/YYYY`)
+const title = page.value.seo?.title || page.value.title
+const description = page.value.seo?.description || page.value.description
 
 useSeoMeta({
+  titleTemplate: `%s - Queer Kit Blog`,
   title,
-  ogTitle: title,
   description,
-  ogDescription: description
+  ogDescription: description,
+  ogTitle: `${ title } - Queer Kit Blog`
+})
+
+const fixedLinks = [
+  {
+    label: `Share Post`,
+    icon: `lucide:send`,
+    onClick: async() => {
+      try {
+        await share({
+          title,
+          text: description,
+          url: `${ location.href }`
+        })
+      } catch {
+        toast.add({
+          title: `Failed to share page.`,
+          description: `An unexpected error occurred. Please try again.`,
+          color: `error`
+        })
+      }
+    }
+  },
+  {
+    label: `Copy Link`,
+    icon: `lucide:link`,
+    onClick: async() => {
+      try {
+        await copy(`${ location.href }`)
+        toast.add({
+          title: `Page URL copied to clipboard!`,
+          color: `success`
+        })
+      } catch {
+        toast.add({
+          title: `Failed to copy page URL to clipboard.`,
+          description: `An unexpected error occurred. Please try again.`,
+          color: `error`
+        })
+      }
+    }
+  }
+]
+
+const combinedLinks = computed(() => {
+  const dynamicLinks = page.value?.links || [
+  ]
+  return [
+    ...dynamicLinks,
+    ...fixedLinks
+  ]
 })
 
 const pageLinks = ref<PageLink[]>([
@@ -59,45 +130,179 @@ const pageLinks = ref<PageLink[]>([
 </script>
 
 <template>
-  <UContainer v-if="blog">
+  <UContainer v-if="page">
     <UPage>
       <UPageHeader
-        :title="blog.title"
-        :description="blog.description"
-        :headline="blog.type"
-        :links="blog.links"
+        :title="page.title"
+        :description="page.description"
+        :links="combinedLinks"
       >
-        <RLLayoutBox
-          direction="vertical"
+        <template #headline>
+          <QKLayoutBox
+            direction="vertical"
+            gap="lg"
+            align-items="start"
+          >
+            <UBreadcrumb :items="[{ label: 'Blog', to: '/blog' }, { label: page.title }]" class="max-w-full" />
+            <QKLayoutBox
+              direction="horizontal"
+              gap="sm"
+            >
+              <span>
+                {{ page.category }}
+              </span>
+              <span class="text-muted">&middot;&nbsp;&nbsp;<NuxtTime
+                :datetime="page.datePosted"
+                year="numeric"
+                month="numeric"
+                day="numeric"
+              /></span>
+            </QKLayoutBox>
+          </QKLayoutBox>
+        </template>
+        <QKLayoutBox
+          direction="horizontal"
           gap="md"
-          class="pt-4"
+          class="pt-6 flex-wrap"
         >
-          <UAvatarGroup>
-            <UTooltip v-for="(author, index) in blog.authors" :key="index" :text="author.name">
-              <ULink :to="author.to">
-                <UAvatar :src="author.avatar.src" :alt="author.name" />
-              </ULink>
-            </UTooltip>
-          </UAvatarGroup>
-          <span class="text-muted">Date Posted: <time :datetime="blog.datePosted">{{ datePosted }}</time></span>
-        </RLLayoutBox>
+          <UUser
+            v-for="(author, index) in page.authors"
+            :key="index"
+            v-bind="author"
+            :description="author.username ? `@${author.username}` : undefined"
+          />
+        </QKLayoutBox>
       </UPageHeader>
       <UPageBody>
-        <ContentRenderer
-          v-if="blog"
-          :value="blog"
-        />
+        <ContentRenderer v-if="page.body" :value="page" />
         <USeparator v-if="surround?.length" />
+        <UButton
+          variant="link"
+          icon="lucide:arrow-up-left"
+          label="Return to Blog"
+          to="/blog"
+        />
         <UContentSurround :surround="surround" />
       </UPageBody>
-      <template v-if="blog?.body?.toc?.links?.length" #right>
-        <UContentToc title="Table of Contents" :links="blog.body.toc.links" highlight>
+      <template #left>
+        <UPageAside>
+          <UContentNavigation
+            :navigation="blogNavigation"
+            :collapsible="false"
+            highlight
+          />
+        </UPageAside>
+      </template>
+      <template #right>
+        <UContentToc
+          title="Table of Contents"
+          :links="page?.body?.toc?.links"
+          highlight
+          class="hidden lg:block lg:backdrop-blur-none"
+        >
           <template #bottom>
-            <USeparator />
             <UPageLinks title="Links" :links="pageLinks" />
-            <span class="text-muted text-sm">Date Posted: <time :datetime="page.datePosted">{{ datePosted }}</time></span>
+            <QKLayoutBox
+              direction="vertical"
+              gap="xs"
+            >
+              <span class="text-sm text-muted">Last Updated:</span>
+              <NuxtTime
+                :datetime="page.datePosted"
+                year="numeric"
+                month="numeric"
+                day="numeric"
+                hour="numeric"
+                minute="numeric"
+                second="numeric"
+                time-zone-name="short"
+                class="text-sm text-muted"
+              />
+            </QKLayoutBox>
           </template>
         </UContentToc>
+        <div class="order-first lg:order-last sticky top-(--ui-header-height) z-10 bg-default lg:bg-[initial] -mx-4 p-6 border-b border-default flex justify-between">
+          <UDrawer
+            v-model:open="blogDrawerOpen"
+            direction="left"
+            :handle="false"
+            side="left"
+            class="lg:hidden"
+            :ui="{
+              content: 'w-full max-w-2/3 rounded-none',
+            }"
+          >
+            <UButton
+              label="Blog"
+              icon="lucide:list-tree"
+              color="neutral"
+              variant="link"
+              size="xs"
+              aria-label="Open Blog Navigation"
+              class="-m-4"
+            />
+            <template #body>
+              <UContentNavigation
+                :navigation="blogNavigation"
+                default-open
+                trailing-icon="lucide:chevron-right"
+                :ui="{ linkTrailingIcon: 'group-data-[state=open]:rotate-90' }"
+                highlight
+              />
+            </template>
+          </UDrawer>
+          <UDrawer
+            v-model:open="tocDrawerOpen"
+            direction="right"
+            :handle="false"
+            side="top"
+            class="lg:hidden"
+            :ui="{
+              content: 'w-full max-w-2/3 rounded-none',
+            }"
+          >
+            <UButton
+              label="Table of Contents"
+              leading-icon="lucide:table-of-contents"
+              color="neutral"
+              variant="link"
+              size="xs"
+              aria-label="Table of Contents"
+              class="-m-4"
+            />
+            <template #body>
+              <UContentToc
+                title="Table of Contents"
+                :links="page.body?.toc?.links"
+                :open="true"
+                default-open
+                :ui="{
+                  root: '!mx-0 !px-1 top-0 overflow-visible',
+                  container: '!pt-0 border-b-0',
+                  trailingIcon: 'hidden',
+                  bottom: 'flex flex-col',
+                }"
+              />
+              <QKLayoutBox
+                direction="vertical"
+                gap="xs"
+              >
+                <span class="text-sm text-muted">Last Updated:</span>
+                <NuxtTime
+                  :datetime="page.datePosted"
+                  year="numeric"
+                  month="numeric"
+                  day="numeric"
+                  hour="numeric"
+                  minute="numeric"
+                  second="numeric"
+                  time-zone-name="short"
+                  class="text-sm text-muted"
+                />
+              </QKLayoutBox>
+            </template>
+          </UDrawer>
+        </div>
       </template>
     </UPage>
   </UContainer>
