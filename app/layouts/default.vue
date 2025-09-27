@@ -2,6 +2,7 @@
 
 <template>
   <div>
+    <QKConstructionBanner />
     <QKAppHeader />
     <UMain>
       <slot />

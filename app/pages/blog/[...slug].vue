@@ -54,6 +54,10 @@ watch(
 const title = page.value.seo?.title || page.value.title
 const description = page.value.seo?.description || page.value.description
 
+interface PageDetailLink extends PageLink {
+  time: string
+}
+
 useSeoMeta({
   titleTemplate: `%s - Queer Kit Blog`,
   title,
@@ -125,6 +129,19 @@ const pageLinks = ref<PageLink[]>([
     to: `https://github.com/nuxt/ui/releases`
   }
 ])
+
+const pageDetails = ref<PageDetailLink[]>([
+  {
+    label: `Created At:`,
+    icon: `lucide:calendar-clock`,
+    time: page.value.datePosted
+  },
+  {
+    label: `Last Updated:`,
+    icon: `lucide:radio`,
+    time: page.value.datePosted
+  }
+])
 </script>
 
 <template>
@@ -192,21 +209,39 @@ const pageLinks = ref<PageLink[]>([
           class="hidden lg:block lg:backdrop-blur-none"
         >
           <template #bottom>
+            <USeparator />
             <UPageLinks title="Links" :links="pageLinks" />
-            <QKLayoutBox direction="vertical" gap="xs">
-              <span class="text-sm text-muted">Last Updated:</span>
-              <NuxtTime
-                :datetime="page.datePosted"
-                year="numeric"
-                month="numeric"
-                day="numeric"
-                hour="numeric"
-                minute="numeric"
-                second="numeric"
-                time-zone-name="short"
-                class="text-sm text-muted"
-              />
-            </QKLayoutBox>
+            <UPageLinks title="Details" :links="pageDetails">
+              <template #link="{ link }">
+                <UTooltip>
+                  <template #content>
+                    <NuxtTime
+                      :datetime="link.time"
+                      year="numeric"
+                      month="numeric"
+                      day="numeric"
+                      hour="numeric"
+                      minute="numeric"
+                      second="numeric"
+                      time-zone-name="short"
+                      class="text-sm text-muted"
+                    />
+                  </template>
+                  <template #default>
+                    <QKLayoutBox direction="horizontal" gap="xs">
+                      <UIcon v-if="link.icon" size="20" :name="link.icon" />
+                      <span>{{ link.label }}</span>
+                      <NuxtTime
+                        :datetime="link.time"
+                        year="numeric"
+                        month="numeric"
+                        day="numeric"
+                      />
+                    </QKLayoutBox>
+                  </template>
+                </UTooltip>
+              </template>
+            </UPageLinks>
           </template>
         </UContentToc>
         <div
@@ -252,7 +287,6 @@ const pageLinks = ref<PageLink[]>([
             }"
           >
             <UButton
-              label="Table of Contents"
               leading-icon="lucide:table-of-contents"
               color="neutral"
               variant="link"
@@ -263,8 +297,10 @@ const pageLinks = ref<PageLink[]>([
             <template #body>
               <UContentToc
                 title="Table of Contents"
-                :links="page.body?.toc?.links"
+                :links="page?.body?.toc?.links"
+                class="lg:block lg:backdrop-blur-none"
                 :open="true"
+                highlight
                 default-open
                 :ui="{
                   root: '!mx-0 !px-1 top-0 overflow-visible',
@@ -272,21 +308,47 @@ const pageLinks = ref<PageLink[]>([
                   trailingIcon: 'hidden',
                   bottom: 'flex flex-col'
                 }"
-              />
-              <QKLayoutBox direction="vertical" gap="xs">
-                <span class="text-sm text-muted">Last Updated:</span>
-                <NuxtTime
-                  :datetime="page.datePosted"
-                  year="numeric"
-                  month="numeric"
-                  day="numeric"
-                  hour="numeric"
-                  minute="numeric"
-                  second="numeric"
-                  time-zone-name="short"
-                  class="text-sm text-muted"
-                />
-              </QKLayoutBox>
+              >
+                <template #bottom>
+                  <USeparator />
+                  <UPageLinks title="Links" :links="pageLinks" />
+                  <UPageLinks title="Details" :links="pageDetails">
+                    <template #link="{ link }">
+                      <UTooltip>
+                        <template #content>
+                          <NuxtTime
+                            :datetime="link.time"
+                            year="numeric"
+                            month="numeric"
+                            day="numeric"
+                            hour="numeric"
+                            minute="numeric"
+                            second="numeric"
+                            time-zone-name="short"
+                            class="text-sm text-muted"
+                          />
+                        </template>
+                        <template #default>
+                          <QKLayoutBox direction="horizontal" gap="xs">
+                            <UIcon
+                              v-if="link.icon"
+                              size="20"
+                              :name="link.icon"
+                            />
+                            <span>{{ link.label }}</span>
+                            <NuxtTime
+                              :datetime="link.time"
+                              year="numeric"
+                              month="numeric"
+                              day="numeric"
+                            />
+                          </QKLayoutBox>
+                        </template>
+                      </UTooltip>
+                    </template>
+                  </UPageLinks>
+                </template>
+              </UContentToc>
             </template>
           </UDrawer>
         </div>
