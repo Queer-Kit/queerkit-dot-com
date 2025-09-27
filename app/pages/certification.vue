@@ -129,7 +129,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 accept="image/*"
                 label="Drag and drop an image here or select from your device"
                 description="PNG, JPG or WEBP (max. 2MB)"
-                class="w-96 min-h-48"
+                class="min-h-48 w-96"
               />
               <QKLayoutBox direction="horizontal" gap="md">
                 <UFormField label="First Name" description="" required>
@@ -164,7 +164,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                   I have read and agree to the
                   <ULink
                     to="/documents/terms-of-service"
-                    class="text-primary font-medium"
+                    class="font-medium text-primary"
                     >Terms of Service</ULink
                   >.
                 </template>

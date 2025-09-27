@@ -69,7 +69,7 @@ const columns: FooterColumn[] = [
         <NuxtLink to="/">
           <UIcon name="first-party:logotype-color" class="h-48 w-full" />
         </NuxtLink>
-        <p class="text-muted text-sm">
+        <p class="text-sm text-muted">
           © {{ new Date().getFullYear() }} Queer Kit
         </p>
       </QKLayoutBox>
@@ -114,7 +114,7 @@ const columns: FooterColumn[] = [
             direction="vertical"
             gap="md"
             align-items="center"
-            class="md:items-end md:flex-row"
+            class="md:flex-row md:items-end"
           >
             <ULocaleSelect
               v-model="locale"

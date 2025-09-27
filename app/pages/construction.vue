@@ -37,7 +37,7 @@ const handleLogin = async () => {
 
 <template>
   <UContainer>
-    <div class="flex min-h-screen items-center justify-center bg-background">
+    <div class="bg-background flex min-h-screen items-center justify-center">
       <UCard class="w-full max-w-sm">
         <template #header>
           <div class="flex flex-col items-center gap-2">
